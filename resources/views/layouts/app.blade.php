@@ -52,13 +52,13 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Docentes') }}</a>
+                                <a class="nav-link" href="#">{{ __('Acudientes') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('mensajes.create') }}">{{ __('Contacto') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Acudientes') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Docentes') }}</a>
                             </li>
                             
                             
