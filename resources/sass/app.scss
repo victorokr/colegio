@@ -1,8 +1,14 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+//@import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.navbar {
+	margin-bottom: -23px; //reduce el margen inferior, pega el navbar al carousel
+	//max-height: 60px; //controla el ancho del navbar
+}
