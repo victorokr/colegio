@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Hash;//se agrego para que funcione el metodo resetPassword
+use Illuminate\Support\Str;//se agrego para que funcione el metodo resetPassword
+use Illuminate\Auth\Events\PasswordReset;//se agrego para que funcione el metodo resetPassword
 
 class ResetPasswordController extends Controller
 {
@@ -25,7 +28,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -36,4 +39,33 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+
+    public function rules()//Se saco del traid use ResetsPasswords
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password'=> ['required','confirmed','min:5|max:20','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],//debe contener un numero, minuscula y mayuscula
+        ];
+    }
+
+
+    protected function resetPassword($user, $password)//Se saco del traid use ResetsPasswords
+    {
+        $user->password = Hash::make($password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+
+        //$this->guard()->login($user);//evita iniciar sesion despues de resetear contraseña al estar comentado
+
+        return back()->with('infoContraseña','Tu contraseña se ha actualizado, por favor inicia sesion'); 
+    }
+
+    
+
 }

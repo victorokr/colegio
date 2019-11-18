@@ -53,10 +53,10 @@ class Docente extends Authenticatable
      */
 
 
-    // public function sendPasswordResetNotification($token)
-    // {
-    //     $this->notify(new ResetPasswordNotificationEs($token));
-    // }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotificationEs($token));
+    }
 
 
     //  public function setPasswordAttribute($password)//modifica el password encriptandolo
