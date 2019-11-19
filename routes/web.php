@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('docentes/area', 'AreadocentesController@docente');//redirec login
 
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -26,6 +27,11 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 
+Route::get('acudientes/login', 'AcudientesController@showLoginForm');
+Route::post('acudientes/login','AcudientesController@login');
+Route::get('logout',           'AcudientesController@logout');
+Route::get('acudientes/area', 'AreaacudientesController@acudiente');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('mensajes', 'MessagesController');
-Route::get('docentes/area', 'AreadocentesController@docente');//redirec login

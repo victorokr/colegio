@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Responsable extends Model
+class Responsable extends Authenticatable
 {
     protected $table = 'responsable';
     protected $primaryKey = 'id_responsable';

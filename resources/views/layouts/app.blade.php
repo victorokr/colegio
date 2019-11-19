@@ -58,7 +58,7 @@
                                 <a class="nav-link" href="{{ route('mensajes.create') }}">{{ __('Contacto') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Acceso Acudientes') }}</a>
+                                <a class="nav-link" href="{{ url('acudientes/login') }}">{{ __('Acceso Acudientes') }}</a>
                             </li>
                             
                             
