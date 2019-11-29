@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ConsultanteResetPasswordNotification extends Notification
+class AcudientesResetPasswordNotification extends Notification
 {
     use Queueable;
 
@@ -47,9 +47,9 @@ class ConsultanteResetPasswordNotification extends Notification
 
         return (new MailMessage)
             ->subject(Lang::getFromJson('Solicitud de Reestablecimiento contraseña'))
-            ->greeting('Hola ' . $notifiable->Nombre)
+            ->greeting('Hola ' . $notifiable->nombres)
             ->line(Lang::getFromJson('Recibes este email porque se solicito un restablecimiento de contraseña para tu cuenta.'))
-            ->action(Lang::getFromJson('Reestablecer contraseña'), url(config('app.url').route('consultante.password.reset', $this->token, false)))
+            ->action(Lang::getFromJson('Reestablecer contraseña'), url(config('app.url').route('acudiente.password.reset', $this->token, false)))
             ->line(Lang::getFromJson('Si no realizaste esta petición, puedes ignorar este correo y nada habrá cambiado.'))
             ->salutation(Lang::getFromJson('Saludos'));
     }

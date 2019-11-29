@@ -21,7 +21,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('AccesoDocentes') }}</div>
+                <div class="card-header text-muted text-center">{{ __('AccesoDocentes') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

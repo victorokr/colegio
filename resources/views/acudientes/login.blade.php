@@ -21,7 +21,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('AccesoAcudientes') }}</div>
+                <div class="card-header text-center text-muted">{{ __('AccesoAcudientes') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/acudientes/login') }}">
@@ -73,8 +73,8 @@
                                     {{ __('Iniciar Sesion') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                @if (Route::has('acudiente.password.request'))
+                                    <a class="btn btn-link" href="{{ route('acudiente.password.request') }}">
                                         {{ __('Olvidaste tu contraseña?') }}
                                     </a>
                                 @endif
