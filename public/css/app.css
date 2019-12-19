@@ -11104,3 +11104,162 @@ a.text-dark:focus {
   margin-bottom: -23px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* The sidebar menu */
+
+.sidebar {
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111;
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+
+.sidebar a {
+  text-decoration: none;
+  font-size: 13px;
+  color: #818181;
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  font-family: "Roboto", sans-serif;
+  line-height: 14px;
+}
+
+/* When you mouse over the navigation links, change their color */
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 36px;
+  margin-left: 50px;
+  margin-top: 15px;
+}
+
+/* The button used to open the sidebar */
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #003f79;
+  color: white;
+  padding: 0px 5px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #f0ffee;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation, crea un margen al lado y lado del navbar, se comento por eso */
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+
+.sidebar .btn-menu {
+  display: none;
+  padding: 20px;
+  background: #0d2c44;
+  color: #fff;
+}
+
+.sidebar .btn-menu .icono {
+  float: right;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar .menu li a {
+  padding: 19px 15px;
+}
+
+.sidebar .menu li a:hover {
+  background: #1a95d5;
+  color: #fff;
+}
+
+.sidebar .menu .icono {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.sidebar .menu .icono.izquierda {
+  float: left;
+  margin-right: 10px;
+}
+
+.sidebar .menu .icono.derecha {
+  float: right;
+  margin-left: 10px;
+}
+
+.sidebar .menu ul {
+  display: none;
+}
+
+.sidebar .menu ul li a {
+  background: #f8fffd;
+  color: #000102;
+}
+
+@media screen and (max-width: 450px) {
+  body {
+    padding-top: 80px;
+  }
+
+  .sidebar {
+    margin: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .btn-menu {
+    display: block;
+  }
+
+  .sidebar .menu {
+    display: none;
+  }
+}
+
