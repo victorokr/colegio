@@ -95,4 +95,32 @@ class Docente extends Authenticatable
     //     return false;
     // }
 
+
+    public function gradoEscalafon()
+    {
+        return $this->belongsTo('App\Gradoescalafon','id_escalafon');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo('App\Categoria','id_categoria');
+    }
+
+    public function perfil()
+    {
+        return $this->belongsTo('App\Perfil','id_perfil');
+    }
+
+    public function nivel()
+    {
+        return $this->belongsTo('App\Nivel','id_nivel');
+    }
+
+
+    public function scopeDocente($query, $nombreDocente)
+    {
+        if($nombreDocente)
+        return $query->where('nombres','LIKE',"%$nombreDocente%");
+    }
+
 }

@@ -110,8 +110,8 @@
                     
                     <li><a href="#"><i class="icono izquierda fas fa-chalkboard-teacher"></i> Docentes <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Crear Docente</a></li>
-                            <li><a href="#">Lista Docentes</a></li>    
+                            <li><a href="{{ url('docente/create') }}">Crear Docente</a></li>
+                            <li><a href="{{ url('docente') }}">Lista Docentes</a></li>    
                         </ul>
                     </li>
 
@@ -219,7 +219,7 @@
     /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
 function openNav() {
   document.getElementById("mySidebar").style.width = "220px";
-  document.getElementById("app").style.marginLeft = "250px";
+  document.getElementById("app").style.marginLeft = "220px";
 }
 
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */

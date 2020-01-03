@@ -40,3 +40,5 @@ Route::post('acudiente/password/reset', 'acudientes\AcudienteResetPasswordContro
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('mensajes', 'MessagesController');
+
+Route::resource('docente','DocenteController');

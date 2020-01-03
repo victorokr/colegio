@@ -180,3 +180,44 @@
 }
 
  
+//icono card header
+.container-global .card .card-header .icono { 
+	font-size: 20px; //tamaño del icono 
+	//line-height: 20px;
+	
+}
+
+//tamaño letra card-header 
+.container-global .card .card-header { 
+	font-weight: 530; //negrita
+	font-size: 15px; //tamaño de la letra
+	//font-family: 'Roboto', sans-serif; //tipo de letra
+	//text-transform: capitalize;
+
+}
+
+body{
+	background-color: #E6E8EB;
+	font-family: 'Roboto', sans-serif; //tipo de letra
+	line-height: 18px; //espacio entre lineas de texto 
+}
+
+
+.container-global .card .card-body .table{
+	width: 120%; //ancho de la tabla
+    text-transform: capitalize;
+	font-size: 14px;
+}
+
+
+//pega el boton a la derecha de la linea de la tabla
+.container-global .card-body .table .btn.editar {
+	margin-left: -8px; 
+}
+
+//pega el label al input
+.container-global .card-body label {
+	margin-bottom: -10px; 
+	font : .8em "typewriter", sans-serif;
+}
+

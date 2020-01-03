@@ -11263,3 +11263,33 @@ a.text-dark:focus {
   }
 }
 
+.container-global .card .card-header .icono {
+  font-size: 20px;
+}
+
+.container-global .card .card-header {
+  font-weight: 530;
+  font-size: 15px;
+}
+
+body {
+  background-color: #E6E8EB;
+  font-family: "Roboto", sans-serif;
+  line-height: 18px;
+}
+
+.container-global .card .card-body .table {
+  width: 120%;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.container-global .card-body .table .btn.editar {
+  margin-left: -8px;
+}
+
+.container-global .card-body label {
+  margin-bottom: -10px;
+  font: 0.8em "typewriter", sans-serif;
+}
+
