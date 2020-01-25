@@ -22,7 +22,7 @@ class Docente extends Authenticatable
      */
     protected $fillable = [
         'nombres','apellidos','documento','telefono','direccion',
-        'email'  , 'password','lugarDeResidencia','id_escalafon','id_categoria','id_perfil',
+        'email'  , 'password','lugarDeResidencia','id_escalafon','id_nivel','id_perfil',
     ];
 
     /**
@@ -59,41 +59,42 @@ class Docente extends Authenticatable
     }
 
 
-    //  public function setPasswordAttribute($password)//modifica el password encriptandolo
-    // {
-    //     $this->attributes['password']=bcrypt($password);
-    // }
+     public function setPasswordAttribute($password)//modifica el password encriptandolo
+    {
+        $this->attributes['password']=bcrypt($password);
+    }
 
 
 
 
-    // public function roles()
-    // {
-    //     return $this->belongsToMany('App\Role','empleado_role','id_empleado','id_role');//el primero pertenece a la tabla pivot, 2do a la tabla empleado para evitar que eloquen lo busque en orden alfabetico, 3ro el id de la tabla a relacionar, tabla role.
-    // }
+    public function hasRoles(array $roles)
+    {
+        foreach ($roles as $role)
+         {
+             foreach ($this->roles as $empleadoRol)//$this->role hace referencia al campo rol en la abase de datos
+             {
+
+                if ($empleadoRol->Nombre === $role)
+                {
+                    return true;
+                }
 
 
-    // public function hasRoles(array $roles)
-    // {
-    //     foreach ($roles as $role)
-    //      {
-    //          foreach ($this->roles as $empleadoRol)//$this->role hace referencia al campo rol en la abase de datos
-    //          {
-
-    //             if ($empleadoRol->Nombre === $role)
-    //             {
-    //                 return true;
-    //             }
-
-
-    //          }
+             }
             
-    //      }
+         }
 
 
 
-    //     return false;
-    // }
+        return false;
+    }
+
+    
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role','docente_role','id_docente','id_role');
+    }
 
 
     public function gradoEscalafon()
@@ -101,9 +102,9 @@ class Docente extends Authenticatable
         return $this->belongsTo('App\Gradoescalafon','id_escalafon');
     }
 
-    public function categoria()
+    public function areaDeEstudio()
     {
-        return $this->belongsTo('App\Categoria','id_categoria');
+        return $this->belongsToMany('App\Areadeestudio','Areadeestudio_docente','id_docente','id_areaDeEstudio');
     }
 
     public function perfil()

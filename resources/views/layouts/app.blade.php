@@ -107,41 +107,12 @@
                
                <a href="#" class="btn-menu">Menu<i class="icono fas fa-bars"></i></a> <!--enlace para dispositivos moviles, con icono fas fa-bars-->
                <ul class="menu">
-                    
+
+                    @if (auth()->user()->hasRoles(['Administrador']))     
                     <li><a href="#"><i class="icono izquierda fas fa-chalkboard-teacher"></i> Docentes <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             <li><a href="{{ url('docente/create') }}">Crear Docente</a></li>
                             <li><a href="{{ url('docente') }}">Lista Docentes</a></li>    
-                        </ul>
-                    </li>
-
-                    <li><a href="#"><i class="icono izquierda fas fa-book-open"></i> Asignaturas <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Crear Asignatura</a>
-                            <li><a href="#">Lista de Asignaturas</a>
-                        </ul>
-                    </li>
-                    
-
-
-                    
-                    <li><a href="#"><i class="icono izquierda fas fa-bookmark"></i> Logros <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Crear Logro</a>
-                            <li><a href="#">Lista de Logros</a>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="icono izquierda fas fa-pencil-alt"></i> Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            {{-- <li><a href="#">Agregar Calificaciones</a></li> --}}
-                            <li><a href="#">Lista de Calificaciones</a></li> 
-                        </ul>
-                    </li>
-
-                    <li><a href="#"><i class="icono izquierda fas fa-building"></i> Cursos <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Agregar Curso</a>
-                            <li><a href="#">Lista de Cursos</a>
                         </ul>
                     </li>
 
@@ -165,6 +136,39 @@
                             <li><a href="#">Lista de Acudientes</a>
                         </ul>
                     </li>
+                    @endif
+
+
+
+                    <li><a href="#"><i class="icono izquierda fas fa-book-open"></i> Asignaturas <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Crear Asignatura</a>
+                            <li><a href="#">Lista de Asignaturas</a>
+                        </ul>
+                    </li>
+                    
+                
+                    <li><a href="#"><i class="icono izquierda fas fa-bookmark"></i> Logros <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Crear Logro</a>
+                            <li><a href="#">Lista de Logros</a>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="icono izquierda fas fa-pencil-alt"></i> Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            {{-- <li><a href="#">Agregar Calificaciones</a></li> --}}
+                            <li><a href="#">Lista de Calificaciones</a></li> 
+                        </ul>
+                    </li>
+
+                    <li><a href="#"><i class="icono izquierda fas fa-building"></i> Cursos <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Agregar Curso</a>
+                            <li><a href="#">Lista de Cursos</a>
+                        </ul>
+                    </li>
+
+                    
 
 
                     <li><a href="#"><i class="icono izquierda fas fa-cloud-upload-alt"></i> Cargar Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
@@ -231,7 +235,27 @@ function closeNav() {
 
 
 
+
+
+
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}" ></script>
 <script src="{{ asset('js/main.js') }}" defer></script>
+
+<script src="{{ asset('/js/es.js') }}"></script>
+<script src="{{ asset('js/parsley.min.js') }}"></script>
+
+
+
+
+
+
+<script>
+  $('#form').parsley();
+</script>
+
+<script type="text/javascript">
+    window.ParsleyValidator.setLocale('es');
+</script>
+
 </body>
 </html>

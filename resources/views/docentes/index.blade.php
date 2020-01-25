@@ -1,6 +1,28 @@
 @extends('layouts.app')
 @section('content')
 
+<div class="container">
+  <div class="row justify-content-center">
+  	<div class="col-auto">
+      @if (session()->has('infoCreate'))
+		    <div class="alert alert-primary mt-1 text-center" style="width: 900px" id="alerta" >
+          <strong>Aviso: </strong>{{ session('infoCreate') }}
+          <button type="button" class="close" data-dismiss="alert" arial-label="cerrar" >
+            <span arial-hidden="true"> &times; </span>
+          </button>
+	      </div>
+		  @endif
+		  @if (session()->has('infoDelete'))
+		    <div class="alert alert-primary mt-1 text-center" style="width: 900px" id="alerta" >
+          <strong>Aviso: </strong>{{ session('infoDelete') }}
+          <button type="button" class="close" data-dismiss="alert" arial-label="cerrar" >
+            <span arial-hidden="true"> &times; </span>
+          </button>
+	      </div>
+		  @endif
+	  </div>	
+  </div>
+</div>
 <div class="container-global">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
@@ -18,7 +40,7 @@
                       <a href="{{ url('docente') }}"   class="btn btn-light mt-0 ml-0 "title="restablecer"><i class="fas fa-reply"></i></a>
                   </div>
                   <div class="col-sm">
-                  <a href="#" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;">Agregar Docente</a>
+                  <a href="{{ url('docente/create') }}" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;"><i class="fas fa-plus-circle"></i> Agregar Docente</a>
                   </div>
               </div>
           
@@ -37,9 +59,10 @@
                 <th scope="col">Email</th>
                 <th scope="col">LugarDeResidencia</th>
                 <th scope="col">Escalafon</th>
-                <th scope="col">Categoria</th>
                 <th scope="col">Perfil</th>
                 <th scope="col">Nivel</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Estudios</th>
                 </tr>
             </thead>
               <tbody>
@@ -65,10 +88,10 @@
                   <td>{{ $listaDocente->email }}</td>
                   <td>{{ $listaDocente->lugarDeResidencia }}</td>
                   <td>{{ optional($listaDocente->gradoEscalafon)->escalafon }}</td>
-                  <td>{{ optional($listaDocente->categoria)->categoria }}</td>
                   <td>{{ optional($listaDocente->perfil)->perfil }}</td>
                   <td>{{ optional($listaDocente->nivel)->nivel }}</td>
-
+                  <td>{{ $listaDocente->roles->pluck('display_name')->implode(' - ') }}</td>
+                  <td>{{ $listaDocente->areaDeEstudio->pluck('nombre')->implode(' - ') }}</td>
                   @empty
 					          <div class="alert alert-info">No se encontraron resultados en nuestros registros</div>
                 </tr>
@@ -76,7 +99,47 @@
               </tbody>
             </table>
             {{ $listaDocentes->render() }} {{-- paginacion --}}
-          </div> 
+          </div>
+          {{-- modal delete --}}
+			    <div class="modal" id="delete" tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document">
+				   <form action="" id="deleteForm" method="POST">
+				    <div class="modal-content">
+				      <div class="modal-header" style="background: #FB1C1C" >
+				        <h5 class="modal-title">Eliminar Docente</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+					      <div class="modal-body">
+					      	{!! csrf_field()!!}
+						    {!! method_field('DELETE')!!}
+					        <p>¿Está seguro de eliminar Docente?</p>
+					        {{-- <input type="hidden" name="id_materialBiblioteca" value=""> --}}
+					      </div>
+					      <div class="modal-footer">
+					      	<button type="submit" class="btn btn-danger" data-dismiss="modal"
+					      	 onclick="formSubmit()">Si</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					      </div>
+				    </div>
+				   </form>
+				  </div>
+				           <script type="text/javascript">
+                        function deleteData(id_docente)
+                        {
+                            var id = id_docente;
+                            var url = '{{ route("docente.destroy", ":id") }}';
+                            url = url.replace(':id', id);
+                            $("#deleteForm").attr('action', url);
+                        }
+
+                        function formSubmit()
+                        {
+                            $("#deleteForm").submit();
+                        }
+						       </script>
+			    </div> 
       </div>
   </div>
 </div>
