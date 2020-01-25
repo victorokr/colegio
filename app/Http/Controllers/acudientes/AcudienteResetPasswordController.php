@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\acudientes;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Hash;//se agrego para que funcione el metodo resetPassword
 use Illuminate\Support\Str;//se agrego para que funcione el metodo resetPassword
 use Illuminate\Auth\Events\PasswordReset;//se agrego para que funcione el metodo resetPassword
+use Illuminate\Support\Facades\Password;//se agrego para que funcione metodo broker
 
-class ResetPasswordController extends Controller
+class AcudienteResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/acudientes/login';
 
     /**
      * Create a new controller instance.
@@ -37,18 +39,36 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:acudiente');
     }
-
 
     public function rules()//Se saco del traid use ResetsPasswords
     {
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password'=> ['required','confirmed','min:5','max:20','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',]//debe contener un numero, minuscula y mayuscula
+            'password'=> 'required|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|min:5|max:20',//debe contener un numero, minuscula y mayuscula
         ];
     }
+
+    /**
+     * Display the password reset view for the given token.
+     *
+     * If no token is present, display the link request form.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string|null  $token
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('acudientepassword.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+
+
+   
 
 
     protected function resetPassword($user, $password)//Se saco del traid use ResetsPasswords
@@ -66,6 +86,27 @@ class ResetPasswordController extends Controller
         return back()->with('infoContraseña','Tu contraseña se ha actualizado, por favor inicia sesion'); 
     }
 
-    
 
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker('acudiente');
+    }
+
+    /**
+     * Get the guard to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('acudiente');
+    }
+
+
+    
 }
