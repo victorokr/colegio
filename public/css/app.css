@@ -11279,7 +11279,7 @@ body {
 }
 
 .container-global .card .card-body .table {
-  width: 120%;
+  width: 135%;
   text-transform: capitalize;
   font-size: 14px;
 }
@@ -11339,5 +11339,9 @@ textarea.parsley-error {
 .parsley-pattern,
 .parsley-length {
   color: #ff0000;
+}
+
+.select2 {
+  width: 100% !important;
 }
 

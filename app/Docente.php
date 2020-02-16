@@ -121,7 +121,8 @@ class Docente extends Authenticatable
     public function scopeDocente($query, $nombreDocente)
     {
         if($nombreDocente)
-        return $query->where('nombres','LIKE',"%$nombreDocente%");
+        return $query->where('nombres','LIKE',"%$nombreDocente%")
+        ->orWhere('apellidos','LIKE',"%$nombreDocente%");
     }
 
 }

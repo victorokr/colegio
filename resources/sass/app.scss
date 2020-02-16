@@ -204,7 +204,7 @@ body{
 
 
 .container-global .card .card-body .table{
-	width: 120%; //ancho de la tabla
+	width: 135%; //ancho de la tabla
     text-transform: capitalize;
 	font-size: 14px;
 }
@@ -268,4 +268,11 @@ input.parsley-success,
   .parsley-type, .parsley-required, .parsley-equalto, .parsley-minlength, .parsley-maxlength, .parsley-pattern, .parsley-length{
    color:#ff0000;
   }
+
+
+
+  //select2 css para el responsive #myselect
+  .select2 {
+	width:100%!important;
+	}
 

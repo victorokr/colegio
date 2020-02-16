@@ -116,7 +116,14 @@
                         </ul>
                     </li>
 
-                    <li><a href="#"><i class="icono izquierda far fa-credit-card"></i> Matricula <i class="icono derecha fas fa-chevron-down"></i></a>
+                    <li><a href="#"><i class="icono izquierda fas fa-restroom"></i> Acudientes <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="{{ url('lista/acudientes/create') }}">Agregar Acudiente</a>
+                            <li><a href="{{ url('lista/acudientes') }}">Lista de Acudientes</a>
+                        </ul>
+                    </li>
+
+                    <li><a href="#"><i class="icono izquierda far fa-credit-card"></i> Matriculas <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Agregar Matricula</a>
                             <li><a href="#">Lista de Matriculas</a>
@@ -130,12 +137,7 @@
                         </ul>
                     </li>
 
-                    <li><a href="#"><i class="icono izquierda fas fa-restroom"></i> Acudientes <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Agregar Acudiente</a>
-                            <li><a href="#">Lista de Acudientes</a>
-                        </ul>
-                    </li>
+                    
                     @endif
 
 
@@ -240,22 +242,54 @@ function closeNav() {
 
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}" ></script>
 <script src="{{ asset('js/main.js') }}" defer></script>
-
-<script src="{{ asset('/js/es.js') }}"></script>
+<link href="{{asset('css/select2.css')}}" rel="stylesheet" />
+<script src="{{asset('js/select2.js')}}"></script>
 <script src="{{ asset('js/parsley.min.js') }}"></script>
 
 
+<script >
+$('#form').parsley();
+    
+
+
+ Parsley.addMessages('es', {
+ defaultMessage: "Este valor parece ser inválido.",
+ type: {
+ email:        "Este valor debe ser un correo válido.",
+ url:          "Este valor debe ser una URL válida.",
+ number:       "Este valor debe ser un número válido.",
+ integer:      "Este valor debe ser un número válido.",
+ digits:       "Este valor debe ser un dígito válido.",
+ alphanum:     "Este valor debe ser alfanumérico."
+  },
+  notblank:       "Este valor no debe estar en blanco.",
+  required:       "Este valor es requerido.",
+  pattern:        "Este valor es incorrecto.",
+  min:            "Este valor no debe ser menor que %s.",
+  max:            "Este valor no debe ser mayor que %s.",
+  range:          "Este valor debe estar entre %s y %s.",
+  minlength:      "Este valor es muy corto. La longitud mínima es de %s caracteres.",
+  maxlength:      "Este valor es muy largo. La longitud máxima es de %s caracteres.",
+  length:         "La longitud de este valor debe estar entre %s y %s caracteres.",
+  mincheck:       "Debe seleccionar al menos %s opciones.",
+  maxcheck:       "Debe seleccionar %s opciones o menos.",
+  check:          "Debe seleccionar entre %s y %s opciones.",
+  equalto:        "Este valor debe ser idéntico."
+});
+
+Parsley.setLocale('es');
+
+window.ParsleyValidator.setLocale('es');
+    
+</script>
 
 
 
-
-<script>
+<!-- <script>
   $('#form').parsley();
-</script>
+</script> -->
 
-<script type="text/javascript">
-    window.ParsleyValidator.setLocale('es');
-</script>
+
 
 </body>
 </html>

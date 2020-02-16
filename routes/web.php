@@ -42,3 +42,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('mensajes', 'MessagesController');
 
 Route::resource('docente','DocenteController');
+Route::resource('lista/acudientes','ListaacudientesController');
