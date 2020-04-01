@@ -43,3 +43,6 @@ Route::resource('mensajes', 'MessagesController');
 
 Route::resource('docente','DocenteController');
 Route::resource('lista/acudientes','ListaacudientesController');
+Route::resource('lista/alumnos','ListaalumnosController');
+Route::resource('crear/alumnosmatricula','CrearalumnosController');
+Route::resource('matricula','MatriculaController');

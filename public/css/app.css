@@ -11345,3 +11345,27 @@ textarea.parsley-error {
   width: 100% !important;
 }
 
+.container-angosto .card .card-header .icono {
+  font-size: 20px;
+}
+
+.container-angosto .card .card-header {
+  font-weight: 530;
+  font-size: 15px;
+}
+
+.container-angosto .card .card-body .table {
+  width: 100%;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.container-angosto .card-body .table .btn.editar {
+  margin-left: -8px;
+}
+
+.container-angosto .card-body label {
+  margin-bottom: -10px;
+  font: 0.8em "typewriter", sans-serif;
+}
+

@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Alumno extends Model
+class Crearalumno extends Model
 {
     protected $table = 'alumno';
     protected $primaryKey = 'id_alumno';
     protected $fillable = ['nombres','apellidos','documento','telefono',
     'email','direccion','lugarDeResidencia','fechaDeNacimiento','id_curso',
-    'id_tipoDocumento','id_lugarDeNacimiento','id_factorRH','id_eps'];
+    'id_tipoDocumento','id_lugarDeNacimiento','id_factorRH','id_eps','id_grado'];
 
     public function factorrh()
     {
@@ -37,17 +37,8 @@ class Alumno extends Model
         return $this->belongsTo('App\Tipodocumento','id_tipoDocumento');
     }
 
-    // public function areaDeEstudio()
-    // {
-    //     return $this->belongsToMany('App\Areadeestudio','Areadeestudio_docente','id_docente','id_areaDeEstudio');
-    // }
-
-
-    public function scopeAlumno($query, $nombreAlumno)
+    public function responsable()
     {
-        if($nombreAlumno)
-        return $query->where('nombres','LIKE',"%$nombreAlumno%")
-
-        ->orWhere('apellidos','LIKE',"%$nombreAlumno%");
+        return $this->belongsToMany('App\Responsable','alumno_responsable','id_alumno','id_responsable');
     }
 }
