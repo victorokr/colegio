@@ -41,14 +41,19 @@ class MatriculaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $documentoAlumno = $request->get('nombres');
+        $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
+        ->alumnoscope($documentoAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
+        ->paginate(1);
+
         $añoElectivoo           = Añoelectivo::pluck('añoElectivo','id_añoElectivo');
-        $tipoDeAspirantee       = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
-        $responsablee           = Responsable::pluck('nombres','id_responsable');
-        $alumnoo                = Alumno::pluck('nombres','id_alumno');
+        //$tipoDeAspirantee       = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
+        //$responsablee           = Responsable::pluck('nombres','id_responsable');
+        //$alumnoo                = Alumno::pluck('nombres','id_alumno');
         
-        return view('matricula.create', compact('añoElectivoo','tipoDeAspirantee','responsablee','alumnoo'));
+        return view('matricula.create', compact('añoElectivoo','listaMatriculas'));
     }
 
     /**
@@ -70,7 +75,7 @@ class MatriculaController extends Controller
             "id_estado"          => '1',
         ]);
 
-        return redirect()->route('matricula.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
+        return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
        ->with('infoCreate','Alumno PreMatriculado Satisfactoriamente');
 
     }
@@ -83,7 +88,10 @@ class MatriculaController extends Controller
      */
     public function show($id)
     {
-        //
+        $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
+        ->alumnoscope($documentoAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
+        ->paginate(4);
+        return view('matricula.show', compact('listaMatriculas'));
     }
 
     /**

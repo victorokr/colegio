@@ -38,7 +38,7 @@ class AcudientesController extends Controller
     public function authenticated()
     {
 
-    	return redirect('/acudientes/area');
+    	return redirect('acudientesarea.index');
     }
 
 

@@ -30,7 +30,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('acudientes/login', 'AcudientesController@showLoginForm');
 Route::post('acudientes/login','AcudientesController@login');
 Route::get('logout',           'AcudientesController@logout');
-Route::get('acudientes/area', 'AreaacudientesController@acudiente');
+Route::resource('acudientes/area', 'AreaacudientesController');
 
 Route::get('acudiente/password/reset', 'acudientes\AcudienteForgotPasswordController@showLinkRequestForm')->name('acudiente.password.request');
 Route::post('acudiente/password/email', 'acudientes\AcudienteForgotPasswordController@sendResetLinkEmail')->name('acudiente.password.email');
