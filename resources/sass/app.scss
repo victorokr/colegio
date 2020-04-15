@@ -323,3 +323,25 @@ input.parsley-success,
 	font : .8em "typewriter", sans-serif;
 }
 
+.container-cssform  {
+
+	/* Centrar el formulario en la página */
+	margin: 0 auto;
+	width: 100%;
+	border-radius: 1em;
+	border: 1px solid #CCC; 
+	background-color:#fafafa;
+	padding: 1em;
+}
+
+
+//form con borde
+//form {
+	/* Centrar el formulario en la página */
+	//margin: 0 auto;
+	//width: 400px;
+	/* Esquema del formulario */
+	//padding: 1em;
+	//border: 1px solid #CCC;
+	//border-radius: 1em;
+  //}

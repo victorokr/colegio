@@ -26,25 +26,44 @@
 <div class="container-angosto">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-    <a><i class="icono  fas fa-folder-open"></i>  Renovar matricula de estudiantes antiguos</a>
+    <a><i class="icono  fas fa-folder-open"></i> Mis Matriculas</a>
     </div>
     <div class="card-body">
-        <form method="GET" action="{{ route('matricula.create') }}"> {{--la consulta se redirige a create view, no  se queda en view index--}}
-          
-              <div class="row mt-1 ">
+          <div class="row mt-1">
+              
                   <div class="col-sm">
-                      <input type="text" class="form-control mb-2" value="{{ request('nombres')}}" id="prueba" name="nombres" placeholder="Ingrese documento del estudiante">
+                     <a href="{{ url('crear/alumnosmatricula/create') }}" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;"><i class="fas fa-plus-circle"></i> Prematricular estudiante</a>
                   </div>
-                  <div class="col-sm">
-                      <button type="submit" class="btn btn-primary mt-0 ml-0 mr-0 " title="Buscar"><i class="fas fa-search"></i></button>
-                      <a href="{{ url('matricula') }}"   class="btn btn-light mt-0 ml-0 "title="restablecer"><i class="fas fa-reply"></i></a>
-                  </div>
+              
+          </div>
+          <div class="table-responsive">  
+            <table class="table table-sm table-hover  mt-2">
+            <caption> Matriculas</caption>
+            <thead class="thead-light">
+                <tr>
+                
+                <th scope="col">Estudiante</th>
+                <th scope="col">Estado de la Matricula</th>
+                <th scope="col">Año Electivo</th>
+                <th scope="col">Tipo de aspirante</th>
+                
+                </tr>
+            </thead>
+              <tbody>
+                @foreach ($listaMatriculas as $listaMatricula)
+                <tr> 
+                   
+                    <td>{{ optional($listaMatricula->alumno)->nombres }} {{ optional($listaMatricula->alumno)->apellidos }}</td>
+                    <td>{{ optional($listaMatricula->estado)->estado }}</td>
+                    <td>{{ optional($listaMatricula->añoElectivo)->añoElectivo }}</td>
+                    <td>{{ optional($listaMatricula-> tipoDeAspirante)->tipoDeAspirante }}</td>
                   
-                  </div>
-              </div>
-          
-        </form>
-          
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+            
+          </div>
            
       </div>
   </div>

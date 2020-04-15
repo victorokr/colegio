@@ -3,7 +3,7 @@
 
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="row justify-content-center">
   	<div class="col-auto">
       @if (session()->has('infoCreate'))
@@ -28,7 +28,7 @@
 <div class="container-angosto">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-    <a><i class="icono  fas fa-folder-open"></i>  Renovar matricula de estudiantes antiguos</a>
+    <a><i class="icono  fas fa-folder-open"></i>  Matriculas</a>
     </div>
     <div class="card-body">
         <form method="GET" action="{{ route('matricula.index') }}">
@@ -42,7 +42,7 @@
                       <a href="{{ url('matricula') }}"   class="btn btn-light mt-0 ml-0 "title="restablecer"><i class="fas fa-reply"></i></a>
                   </div>
                   <div class="col-sm">
-                  <a href="{{ url('crear/alumnosmatricula/create') }}" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;"><i class="fas fa-plus-circle"></i> PreMatricular estudiante</a>
+                 
                   </div>
               </div>
           
@@ -63,34 +63,34 @@
               <tbody>
                 @forelse ($listaMatriculas as $listaMatricula)
                 <tr>
+                  @if( Auth::user()->id_responsable === $listaMatricula->id_responsable )
                   <td>
-                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                    </div>
-                    
-
-                        <a class="editar btn btn-info btn-sm" title="Editar" href="{{ route('matricula.edit', $listaMatricula->id_matricula) }} "><i class="fas fa-edit"></i></a>
-                    </div>
-                  </div>
-                  </td>
                   
-                  
-                  <td>{{ optional($listaMatricula->alumno)->nombres }}</td>
+                  <td>{{ optional($listaMatricula->alumno)->nombres }} {{ optional($listaMatricula->alumno)->apellidos }}</td>
                   <td>{{ optional($listaMatricula->estado)->estado }}</td>
                   <td>{{ optional($listaMatricula->añoElectivo)->añoElectivo }}</td>
                   <td>{{ optional($listaMatricula-> tipoDeAspirante)->tipoDeAspirante }}</td>
+
+                  </td>
+                  @else
+                  <td>
+                  <div class="alert alert-info text-center">El estudiante no es un familiar </div>
+                  </td>
+                  @endif
+
+                  
                   
                   @empty
-					          <div class="alert alert-info">No se encontraron resultados en nuestros registros, por favor realiza la pre matricula del estudiante</div>
+					          <div class="alert alert-info">No se encontraron resultados en nuestros registros, por favor realiza la pre matricula del estudiante  <a href="{{ url('crear/alumnosmatricula/create') }}" style="float:right;"><i class="fas fa-plus-circle"></i> PreMatricular estudiante</a> </div>
                 </tr>
                 @endforelse
               </tbody>
             </table>
-            {{ $listaMatriculas->links() }} {{-- paginacion --}}
+            {{ $listaMatriculas->links('pagination::simple-bootstrap-4') }} {{-- paginacion --}}
           </div>
            
       </div>
   </div>
-</div>
+</div> -->
 
 @endsection

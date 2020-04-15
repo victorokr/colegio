@@ -12,14 +12,32 @@
           </button>
 	      </div>
 		  @endif
-		  @if (session()->has('infoDelete'))
-		  <div class="alert alert-primary mt-1 text-center" style="width: 900px" id="alerta" >
-          <strong>Aviso: </strong>{{ session('infoDelete') }}
-          <button type="button" class="close" data-dismiss="alert" arial-label="cerrar" >
-            <span arial-hidden="true"> &times; </span>
-          </button>
-	      </div>
-		  @endif
+
+            @if (session()->has('infoCreate'))
+            <div class="modal " id="total" tabindex="-1" role="dialog">
+				<div class="modal-dialog  modal-lg"  role="document">
+				    <div class="modal-content">
+				      <div class="modal-header" style="background: #60C144" >
+				        <h5 class="modal-title"> ¡Gracias!</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      
+					    <div class="modal-body">
+                        <strong>Aviso: </strong>{{ session('infoCreate') }}
+  
+					    </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+					    </div>
+				      
+				    </div>
+				</div>
+			</div>
+            @endif
+
+
 	</div>	
   </div>
 </div>

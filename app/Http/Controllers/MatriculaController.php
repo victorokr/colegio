@@ -27,12 +27,9 @@ class MatriculaController extends Controller
      */
     public function index(Request $request)
     {
-        $documentoAlumno = $request->get('nombres');
         
-
         $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
-        ->alumnoscope($documentoAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
-        ->paginate(4);
+       ->where('id_responsable','=', Auth::user()->id_responsable)->get();
         return view('matricula.index', compact('listaMatriculas'));
     }
 
@@ -43,10 +40,10 @@ class MatriculaController extends Controller
      */
     public function create(Request $request)
     {
-        $documentoAlumno = $request->get('nombres');
-        $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
-        ->alumnoscope($documentoAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
-        ->paginate(1);
+        // $documentoAlumno = $request->get('nombres');
+        // $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
+        // ->alumnoscope($documentoAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
+        // ->paginate(1);
 
         $añoElectivoo           = Añoelectivo::pluck('añoElectivo','id_añoElectivo');
         //$tipoDeAspirantee       = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
@@ -76,7 +73,7 @@ class MatriculaController extends Controller
         ]);
 
         return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
-       ->with('infoCreate','Alumno PreMatriculado Satisfactoriamente');
+       ->with('infoCreate','Su registro fue exitoso. Para continuar con el proceso de matrícula, por favor dirígete con el recibo de pago a las instalaciones del colegio');
 
     }
 

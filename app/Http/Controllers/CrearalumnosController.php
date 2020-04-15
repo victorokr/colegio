@@ -15,6 +15,7 @@ use App\Añoelectivo;
 use App\Tipodeaspirante;
 use App\Responsable;
 use App\Alumno;
+use App\Http\Requests\CrearalumnosRequest;
 
 class CrearalumnosController extends Controller
 {
@@ -44,7 +45,7 @@ class CrearalumnosController extends Controller
         $factorrhh           = FactorRH::pluck('factorRH','id_factorRH');
         $epss                = Eps::pluck('EPS','id_eps');
         $lugarDeNacimientoo  = Lugardenacimiento::pluck('lugarDeNacimiento','id_lugarDeNacimiento');
-        $tipoDeDocumentoo    = Tipodocumento::pluck('tipoDocumento','id_tipoDocumento');
+       // $tipoDeDocumentoo    = Tipodocumento::pluck('tipoDocumento','id_tipoDocumento');
         $gradoo              = Grado::pluck('grado','id_grado');
         return view('crearAlumnos.create', compact('factorrhh','epss','lugarDeNacimientoo','tipoDeDocumentoo','gradoo'));
     }
@@ -55,9 +56,25 @@ class CrearalumnosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CrearalumnosRequest $request)
     {   //return $request->all();
-        $crearAlumno = Crearalumno::create( $request->all() );
+        $crearAlumno = Crearalumno::create([
+            "nombres"              => $request->input('nombres'),
+            "apellidos"            => $request->input('apellidos'),
+            "documento"            => $request->input('documento'),
+            "telefono"             => $request->input('telefono'),
+            "email"                => $request->input('email'),
+            "direccion"            => $request->input('direccion'),
+            "lugarDeResidencia"    => $request->input('lugarDeResidencia'),
+            "fechaDeNacimiento"    => $request->input('fechaDeNacimiento'),
+            "id_tipoDocumento"     => '3',
+            "id_lugarDeNacimiento" => $request->input('id_lugarDeNacimiento'),
+            "id_grado"             => $request->input('id_grado'),
+            "id_curso"             => $request->input('id_curso'),
+            "id_factorRH"          => $request->input('id_factorRH'),
+            "id_eps"               => $request->input('id_eps'),
+            
+        ]);
         $responsableDelAlumno =  Auth::user()->id_responsable;
         $crearAlumno ->responsable()->attach($responsableDelAlumno);
         

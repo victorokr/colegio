@@ -142,15 +142,15 @@
 
 
                     @if (auth()->user()->hasRoles(['Responsable']))
-                    <li><a href="#"><i class="icono izquierda far fa-folder-open"></i>  PreMatriculas <i class="icono derecha fas fa-chevron-down"></i></a>
+                    <li><a href="#"><i class="icono izquierda far fa-folder-open"></i>  PreMatricular Estudiante <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{ url('crear/alumnosmatricula/create') }}">Estudiantes Nuevos</a>
+                            <li><a href="{{ url('crear/alumnosmatricula/create') }}">Estudiante Nuevo</a>
                             
                         </ul>
                     </li>
-                    <li><a href="#"><i class="icono izquierda fas fa-folder-open"></i> PreMatriculados(a) <i class="icono derecha fas fa-chevron-down"></i></a>
+                    <li><a href="#"><i class="icono izquierda fas fa-folder-open"></i> Mis Matriculas <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{ url('matricula') }}">Renovar matricula estudiantes antiguos</a>
+                            <li><a href="{{ url('matricula') }}">iformacion de las matriculas</a>
                             
                         </ul>
                     </li>
