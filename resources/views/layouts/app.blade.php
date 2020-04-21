@@ -15,6 +15,8 @@
     <!--iconos desde internet font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -265,7 +267,10 @@ function closeNav() {
 <link href="{{asset('css/select2.css')}}" rel="stylesheet" />
 <script src="{{asset('js/select2.js')}}"></script>
 <script src="{{ asset('js/parsley.min.js') }}"></script>
-
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+<link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('css/wordpress-admin.css')}}" rel="stylesheet" />
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css"> -->
 
 <script >
 $('#form').parsley();
@@ -302,6 +307,8 @@ Parsley.setLocale('es');
 window.ParsleyValidator.setLocale('es');
     
 </script>
+
+
 
 
 

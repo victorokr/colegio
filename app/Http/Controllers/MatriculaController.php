@@ -10,6 +10,8 @@ use App\Alumno;
 use App\Matricula;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateMatriculaRequest;
+//use RealRashid\SweetAlert\Facades\Alert;
+use  SweetAlert;
 
 class MatriculaController extends Controller
 {
@@ -71,9 +73,9 @@ class MatriculaController extends Controller
             "id_alumno"          => $request->input('id_alumno'),
             "id_estado"          => '1',
         ]);
-
+        alert()->success('You have been logged out.', 'Good bye!');
         return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
-       ->with('infoCreate','Su registro fue exitoso. Para continuar con el proceso de matrícula, por favor dirígete con el recibo de pago a las instalaciones del colegio');
+       ;
 
     }
 

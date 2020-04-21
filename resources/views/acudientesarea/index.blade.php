@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row justify-content-center">
   	<div class="col-auto">
-          @if (session()->has('infoCreate'))
+          <!-- @if (session()->has('infoCreate'))
 		  <div class="alert alert-primary mt-1 text-center" style="width: 900px" id="alerta" >
           <strong>Aviso: </strong>{{ session('infoCreate') }}
           <button type="button" class="close" data-dismiss="alert" arial-label="cerrar" >
@@ -35,8 +35,21 @@
 				    </div>
 				</div>
 			</div>
-            @endif
+            @endif -->
 
+            @if (session()->has('infoCreate'))
+            <script>
+                Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Su registro fue exitoso. ',
+                text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
+                showConfirmButton: true,
+                timer: 10500,
+                timerProgressBar: 'true',
+                })
+            </script>
+            @endif
 
 	</div>	
   </div>
@@ -63,6 +76,43 @@
     </div>
 
     
+    <button type="button" id="btnsweet" class="btn btn-primary btn-sm">sweet</button>
+    <script>
+        $('#btnsweet').on('click',function() {
+
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Su registro fue exitoso. ',
+            text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
+            showConfirmButton: true,
+            timer: 10500,
+            timerProgressBar: 'true',
+             })
+
+             
+
+            // const Toast = Swal.mixin({
+            // toast: true,
+            // position: 'top-end',
+            // showConfirmButton: false,
+            // timer: 10500,
+            // timerProgressBar: true,
+            // onOpen: (toast) => {
+            //     toast.addEventListener('mouseenter', Swal.stopTimer)
+            //     toast.addEventListener('mouseleave', Swal.resumeTimer)
+            // }
+            // })
+
+            // Toast.fire({
+            // icon: 'success',
+            // title: 'Su registro fue exitoso.',
+            // text: 'Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio'
+            // })
+
+        });
+    </script>
+
 
         <!-- Styles -->
         <!-- <style>
