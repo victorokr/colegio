@@ -11,24 +11,24 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="images/slider.jpg" class="d-block w-100" alt="First slide">
+        <img src="images/inicio.jpg" class="d-block w-100" alt="First slide">
         <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h5>SoftCode</h5>
+          <p>Desarrolla tus nesecidades</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="images/portada.jpg" class="d-block w-100" alt="second slide">
+        <img src="images/lego.jpg" class="d-block w-100" alt="second slide">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h5>Desarrolla tus nesecidades</h5>
+          <p>Desarrollamos de acuerdo a tus nesecidades</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="images/estudiantes.jpg" class="d-block w-100" alt="Third slide">
+        <img src="images/mundo.jpg" class="d-block w-100" alt="Third slide">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <h5>Era Digital</h5>
+          <p>El mundo en tus manos</p>
         </div>
       </div>
     </div>
@@ -49,14 +49,15 @@
    <div class="card-group ">
 	  <div class="card card border-light ">
 	    <div class="card-body">
-	      <h5 class="card-title">SOFTCODE</h5>
-	      <p class="card-text ">Hello, I’m a UI/UX Designer & Front End Developer from Victoria, Australia. I hold a master degree of Web Design from the World University.And scrambled it to make a type specimen book. It has survived not only five centuries
-	      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, adipisci voluptatum repudiandae, natus impedit repellat aut officia illum at assumenda iusto reiciendis placeat. Temporibus, vero..</p>
+	      <h5 class="card-title">QUIENES SOMOS</h5>
+	      <p class="card-text ">SoftCode. somos un equipo humano joven de profesionales, ingenieros y tecnólogos con la mejor actitud de participación en proyectos empresariales y con los mejores ánimos de afrontar las necesidades que la nueva tecnología requiere.  
+          Prestamos nuestros servicios en el área de informática para empresas dando solución a sus inconvenientes a la mayor brevedad posible.
+</p>
 	      
 	    </div>
 	  </div>
 	  <div class="card card border-light ">
-	    <img src="images/about.jpg" class="card-img-top" alt="...">
+	    <img src="images/sistema1.jpg" class="card-img-top" alt="...">
 	    <div class="card-body">
 	      <h5 class="card-title"></h5>
 	      <p class="card-text"></p>
@@ -66,57 +67,59 @@
   </div>
  </div>
 
-
   <div class="card-deck">
 	  <div class="card ">
-	    <img src="images/item-1.jpg" class="card-img-top" alt="...">
+	    <img src="images/logoCol.png" class="card-img-top" alt="...">
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
-	      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <h5 class="card-title">aplicacion AKPI (ejemplo nombre de la aplicacion)</h5>
+	      <p class="card-text">Aplicacion diseñada para llevar el control de las notas</p>
+	      <p class="card-text"><small class="text-muted"></small></p>
 	    </div>
 	  </div>
 	  <div class="card">
-	    <img src="images/item-2.jpg" class="card-img-top" alt="...">
+	    <img src="images/totalmenteweb.jpg" class="card-img-top" alt="...">
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
-	      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <h5 class="card-title">Sistema Totalmente Web</h5>
+	      <p class="card-text">AKPI es una herramienta totalmente web brinda para su institución un programa para tener control de los diferentes campos de acción haciéndolos más eficientes y eficaces en cada proceso donde se evidenciara un registro académico, control administrativo, dirección, coordinación, cuerpo docente,alumnos y padres de familia.</p>
+	      <p class="card-text"><small class="text-muted"></small></p>
 	    </div>
 	  </div>
 	  <div class="card">
-	    <img src="images/item-3.jpg" class="card-img-top" alt="...">
+	    <img src="images/registroacademico.jpg" class="card-img-top" alt="...">
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
-	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <h5 class="card-title">Registro Académico</h5>
+	      <p class="card-text">
+          con la plataforma AKPI, podrán  llevar un registro académico ajustandose a las necesidades de la institución, integrando las nuevas tecnologías para gestionar los procesos académicos donde se podrá realizar el registro y seguimiento de notas de los alumnos y de esta forma integrar los informes académicos de manera bimestral o trimestral</p>
+	      <p class="card-text"><small class="text-muted"></small></p>
 	    </div>
 	  </div>
   </div>
 
   <div class="card-deck mt-4">
 	  <div class="card ">
-	    <img src="images/item-4.jpg" class="card-img-top" alt="...">
+	    <img src="images/flujodeinformacion.jpg" class="card-img-top" alt="...">
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
-	      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <h5 class="card-title">Flujo de Información Total</h5>
+	      <p class="card-text">Con AKPI tendrás un flujo de información completa entre toda la comunidad educativa (cuerpo docente, padres de familia, alumnos, administrativas y directivas ) permitiendo agilizar y comunicar los diferentes procesos convivenciales y académicos</p>
+	      <p class="card-text"><small class="text-muted"></small></p>
 	    </div>
 	  </div>
 	  <div class="card">
-	    <img src="images/item-5.jpg" class="card-img-top" alt="...">
+	    <img src="images/institucionweb.jpg" class="card-img-top" alt="...">
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
-	      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <h5 class="card-title">Institución Educativa en la Web</h5>
+	      <p class="card-text">
+           La comunidad educativa siempre encontrará la plataforma disponible.
+           Teniendo un espacio privado para la institución. Garantizando un excelente funcionamiento y actualización del sistema y de la información.</p>
+	      <p class="card-text"><small class="text-muted"></small></p>
 	    </div>
 	  </div>
 	  <div class="card">
-	    <img src="images/item-6.jpg" class="card-img-top" alt="...">
+	    <img src="images/administrador.jpg" class="card-img-top" alt="...">
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
-	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <h5 class="card-title">Administrador de la Plataforma</h5>
+	      <p class="card-text">El administrador de la plataforma tendra el control absoluto de la aplicacion pudiendo obtener datos estadisticos, reportes y notas de los alumnos. y todo en tiempo real.</p>
+	      <p class="card-text"><small class="text-muted"></small></p>
 	    </div>
 	  </div>
   </div>
