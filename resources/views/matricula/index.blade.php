@@ -37,9 +37,9 @@
               
           </div>
           <div class="table-responsive">  
-            <table class="table table-sm table-hover  mt-2">
+            <table class="table table-sm table-hover table-striped  mt-2">
             <caption> Matriculas</caption>
-            <thead class="thead-light">
+            <thead >
                 <tr>
                 
                 <th scope="col">Estudiante</th>

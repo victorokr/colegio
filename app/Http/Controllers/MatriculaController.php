@@ -11,8 +11,8 @@ use App\Matricula;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateMatriculaRequest;
 //use RealRashid\SweetAlert\Facades\Alert;
-use  SweetAlert;
-
+//use  SweetAlert;
+use Alert;
 class MatriculaController extends Controller
 {
     public function __construct()
@@ -73,9 +73,9 @@ class MatriculaController extends Controller
             "id_alumno"          => $request->input('id_alumno'),
             "id_estado"          => '1',
         ]);
-        alert()->success('You have been logged out.', 'Good bye!');
+        //Alert::success('You have been logged out.', 'Good bye!');
         return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
-       ;
+        ->with('infoCreate','prueba');
 
     }
 

@@ -1,41 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
   <div class="row justify-content-center">
   	<div class="col-auto">
-          <!-- @if (session()->has('infoCreate'))
-		  <div class="alert alert-primary mt-1 text-center" style="width: 900px" id="alerta" >
-          <strong>Aviso: </strong>{{ session('infoCreate') }}
-          <button type="button" class="close" data-dismiss="alert" arial-label="cerrar" >
-            <span arial-hidden="true"> &times; </span>
-          </button>
-	      </div>
-		  @endif
+          
 
-            @if (session()->has('infoCreate'))
-            <div class="modal " id="total" tabindex="-1" role="dialog">
-				<div class="modal-dialog  modal-lg"  role="document">
-				    <div class="modal-content">
-				      <div class="modal-header" style="background: #60C144" >
-				        <h5 class="modal-title"> ¡Gracias!</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      
-					    <div class="modal-body">
-                        <strong>Aviso: </strong>{{ session('infoCreate') }}
-  
-					    </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
-					    </div>
-				      
-				    </div>
-				</div>
-			</div>
-            @endif -->
+           
 
             @if (session()->has('infoCreate'))
             <script>
@@ -53,42 +24,82 @@
 
 	</div>	
   </div>
-</div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Bienvenido</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    {{ Auth::user()->nombres }}
-                    {{ Auth::user()->apellidos }}
+    <div class="contenedorimg">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="card-header"><small class="text-muted">Bienvenido</small></div>
+
+                    <div class="card-body ">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                                {{ Auth::user()->nombres }}
+                                {{ Auth::user()->apellidos }}
+                            </div>
+                        @endif 
+                    </div>
                 </div>
             </div>
         </div>
+  
+    
+        <div class="row justify-content-center">
+            <div class="card-group  ">
+                <div class="col-md-auto"> 
+                    <div class="card  bg-light text-white" data-tippy-content="Consulta el estado de la matricula">
+                        <img src="/images/estudiantes1.jpg" class="card-img-top" alt="...">
+                        
+                        <div class="card-footer">
+                        <small><a href="{{ url('matricula') }}" class="text-muted stretched-link">Mis Matriculas</a></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-auto">  
+                    <div class="card" data-tippy-content="inicia el proceso de pre matricula del estudiante">
+                        <img src="/images/prema.jpg" class="card-img-top" alt="...">
+                        
+                        <div class="card-footer card-tooltip">
+                        <small><a href="{{ url('crear/alumnosmatricula/create') }}"   class="text-muted stretched-link"  >Pre Matricula</a></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-auto"> 
+                    <div class="card" data-tippy-content="Consulta las calificaciones">
+                        <img src="/images/calificacion.jpg" class="card-img-top" alt="...">
+                        
+                        <div class="card-footer">
+                        <small><a href="#" class="text-muted stretched-link">Calificaciones</a></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
     </div>
 
     
-    <button type="button" id="btnsweet" class="btn btn-primary btn-sm">sweet</button>
-    <script>
-        $('#btnsweet').on('click',function() {
 
-            Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Su registro fue exitoso. ',
-            text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
-            showConfirmButton: true,
-            timer: 10500,
-            timerProgressBar: 'true',
-             })
+   
+
+   
+
+    <!-- <button type="button" id="btnsweet" class="btn btn-primary btn-sm">sweet</button> -->
+    <script>
+        // $('#btnsweet').on('click',function() {
+
+        //     Swal.fire({
+        //     position: 'top-end',
+        //     icon: 'success',
+        //     title: 'Su registro fue exitoso. ',
+        //     text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
+        //     showConfirmButton: true,
+        //     timer: 10500,
+        //     timerProgressBar: 'true',
+        //      })
 
              
 
@@ -110,7 +121,7 @@
             // text: 'Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio'
             // })
 
-        });
+        // });
     </script>
 
 
@@ -200,6 +211,6 @@
             </div>
         </div> -->
  
-    
-</div>
+   
+
 @endsection

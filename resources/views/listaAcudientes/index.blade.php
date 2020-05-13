@@ -61,7 +61,7 @@
                 <th scope="col">Parentesco</th>
                 <th scope="col">TipoDeDocumento</th>
                 <th scope="col">Ocupacion</th>
-                <th scope="col">AcudienteAlternativo</th>
+                
                 </tr>
             </thead>
               <tbody>
@@ -89,7 +89,7 @@
                   <td>{{ optional($listaAcudiente->parentesco)->parentesco }}</td>
                   <td>{{ optional($listaAcudiente->tipoDeDocumento)->tipoDocumento }}</td>
                   <td>{{ $listaAcudiente->ocupacion->pluck('ocupacion')->implode(' - ') }}</td>
-                  <td>{{ $listaAcudiente->responsabledos->pluck('telefono')->implode(' - ') }}</td>
+                  
                   @empty
 					          <div class="alert alert-info">No se encontraron resultados en nuestros registros</div>
                 </tr>

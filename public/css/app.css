@@ -11383,3 +11383,13 @@ textarea.parsley-error {
 
 /* Esquema del formulario */
 
+.contenedorimg {
+  background-image: url("/images/fondoCol.png");
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+}
+

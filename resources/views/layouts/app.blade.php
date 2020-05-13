@@ -9,13 +9,20 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- tooltips tippy -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+
+
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
 
     <!--iconos desde internet font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,19 +34,20 @@
     <!--icono del colegio-->
     <link rel="shortcut icon" href="/images/iconoCol.png">
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<body >
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #fff;">
             <div class="container">
 
-                <a class="navbar-brand" href="{{ url('home') }}">
+                <a class="navbar-brand" href="#">
                     <img class="navbar-light" src="/images/logoCol.png">
                 </a>
 
                 @if (auth()->check())
                 <a class="navbar-brand">
-                    <button type="button" title="Menu" class="openbtn btn btn-light" onclick="openNav()"><i class="fas fa-align-justify"></i></button>
+                    <button type="button" data-tippy-content="Menu de navegación" class="openbtn btn btn-light" onclick="openNav()"><i class="fas fa-align-justify"></i></button>
                 </a>
+                
                 @endif
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -75,6 +83,11 @@
                             
                             
                         @else
+
+                            <a class="navbar-brand">
+                                <a class="nav-link"  href="{{ url('acudientes/area') }}"><i class="fas fa-home"></i> {{ __('Inicio') }}</a>
+                            </a>
+
                             <li class="nav-item dropdown" >
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre >
                                     {{ Auth::user()->email }} <span class="caret"></span>
@@ -153,6 +166,12 @@
                     <li><a href="#"><i class="icono izquierda fas fa-folder-open"></i> Mis Matriculas <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             <li><a href="{{ url('matricula') }}">iformacion de las matriculas</a>
+                            
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="icono izquierda fas fa-folder-open"></i> Mis Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Calificaciones</a>
                             
                         </ul>
                     </li>
@@ -243,19 +262,7 @@
         </main>
     </div>
 
-<script>
-    /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById("mySidebar").style.width = "220px";
-  document.getElementById("app").style.marginLeft = "220px";
-}
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("app").style.marginLeft = "0";
-}
-</script>
 
 
 
@@ -269,52 +276,18 @@ function closeNav() {
 <script src="{{ asset('js/parsley.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 <link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet" />
-<link href="{{asset('css/wordpress-admin.css')}}" rel="stylesheet" />
+<!-- <link href="{{asset('css/wordpress-admin.css')}}" rel="stylesheet" /> -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css"> -->
-
-<script >
-$('#form').parsley();
-    
-
-
- Parsley.addMessages('es', {
- defaultMessage: "Este valor parece ser inválido.",
- type: {
- email:        "Este valor debe ser un correo válido.",
- url:          "Este valor debe ser una URL válida.",
- number:       "Este valor debe ser un número válido.",
- integer:      "Este valor debe ser un número válido.",
- digits:       "Este valor debe ser un dígito válido.",
- alphanum:     "Este valor debe ser alfanumérico."
-  },
-  notblank:       "Este valor no debe estar en blanco.",
-  required:       "Este valor es requerido.",
-  pattern:        "Este valor es incorrecto.",
-  min:            "Este valor no debe ser menor que %s.",
-  max:            "Este valor no debe ser mayor que %s.",
-  range:          "Este valor debe estar entre %s y %s.",
-  minlength:      "Este valor es muy corto. La longitud mínima es de %s caracteres.",
-  maxlength:      "Este valor es muy largo. La longitud máxima es de %s caracteres.",
-  length:         "La longitud de este valor debe estar entre %s y %s caracteres.",
-  mincheck:       "Debe seleccionar al menos %s opciones.",
-  maxcheck:       "Debe seleccionar %s opciones o menos.",
-  check:          "Debe seleccionar entre %s y %s opciones.",
-  equalto:        "Este valor debe ser idéntico."
-});
-
-Parsley.setLocale('es');
-
-window.ParsleyValidator.setLocale('es');
-    
-</script>
+<script src="{{ asset('js/myjs.min.js') }}" defer></script>
 
 
 
 
 
-<!-- <script>
-  $('#form').parsley();
-</script> -->
+
+
+
+ 
 
 
 
