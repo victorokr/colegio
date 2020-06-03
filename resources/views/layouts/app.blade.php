@@ -83,10 +83,17 @@
                             
                             
                         @else
-
+                            @if (auth()->user()->hasRoles(['Responsable']))
                             <a class="navbar-brand">
                                 <a class="nav-link"  href="{{ url('acudientes/area') }}"><i class="fas fa-home"></i> {{ __('Inicio') }}</a>
                             </a>
+                            @endif
+
+                            @if (auth()->user()->hasRoles(['Empleado']))
+                            <a class="navbar-brand">
+                                <a class="nav-link"  href="{{ url('docentes/area') }}"><i class="fas fa-home"></i> {{ __('Inicio') }}</a>
+                            </a>
+                            @endif
 
                             <li class="nav-item dropdown" >
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre >
@@ -140,7 +147,7 @@
 
                     <li><a href="#"><i class="icono izquierda far fa-credit-card"></i> Matriculas <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Agregar Matricula</a>
+                            
                             <li><a href="#">Lista de Matriculas</a>
                         </ul>
                     </li>
@@ -274,11 +281,16 @@
 <link href="{{asset('css/select2.css')}}" rel="stylesheet" />
 <script src="{{asset('js/select2.js')}}"></script>
 <script src="{{ asset('js/parsley.min.js') }}"></script>
-<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-<link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet" />
-<!-- <link href="{{asset('css/wordpress-admin.css')}}" rel="stylesheet" /> -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css"> -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+
+
+
+
 <script src="{{ asset('js/myjs.min.js') }}" defer></script>
+
+
+
 
 
 

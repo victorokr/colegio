@@ -32,7 +32,7 @@ class MatriculaController extends Controller
         
         $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
        ->where('id_responsable','=', Auth::user()->id_responsable)->get();
-        return view('matricula.index', compact('listaMatriculas'));
+        return view('mismatriculas.index', compact('listaMatriculas'));
     }
 
     /**
@@ -52,7 +52,7 @@ class MatriculaController extends Controller
         //$responsablee           = Responsable::pluck('nombres','id_responsable');
         //$alumnoo                = Alumno::pluck('nombres','id_alumno');
         
-        return view('matricula.create', compact('añoElectivoo','listaMatriculas'));
+        return view('mismatriculas.create', compact('añoElectivoo'));
     }
 
     /**
@@ -75,7 +75,7 @@ class MatriculaController extends Controller
         ]);
         //Alert::success('You have been logged out.', 'Good bye!');
         return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
-        ->with('infoCreate','prueba');
+        ->with('infoCreateMatricula','prueba');
 
     }
 
@@ -90,7 +90,7 @@ class MatriculaController extends Controller
         $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
         ->alumnoscope($documentoAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
         ->paginate(4);
-        return view('matricula.show', compact('listaMatriculas'));
+        return view('mismatriculas.show', compact('listaMatriculas'));
     }
 
     /**

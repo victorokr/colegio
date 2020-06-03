@@ -45,7 +45,7 @@
 
             <div class="row justify-content-center ">
                 <div class="col-md-6 mt-4">
-                    <label for="inputCity">Año al que se va a matricular </label>
+                    <label for="inputCity">Año al que se va a matricular para iniciar clases </label>
                     <select id="inputParentesco" class="form-control" name="id_añoElectivo" required data-parsley-required data-parsley-trigger="keyup" >
                         <option value="" selected>Seleccionar...</option>
                           @foreach ($añoElectivoo as $año =>$AñoElectivoo)
