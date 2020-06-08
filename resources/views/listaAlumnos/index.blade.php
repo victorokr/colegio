@@ -40,7 +40,7 @@
                       <a href="{{ url('lista/alumnos') }}"   class="btn btn-light mt-0 ml-0 "title="restablecer"><i class="fas fa-reply"></i></a>
                   </div>
                   <div class="col-sm">
-                  <a href="{{ url('lista/alumnos/create') }}" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;"><i class="fas fa-plus-circle"></i> Agregar Acudiente</a>
+                  <a href="{{ url('lista/alumnos/create') }}" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;"><i class="fas fa-plus-circle"></i> Ver Matriculas</a>
                   </div>
               </div>
           

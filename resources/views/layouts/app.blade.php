@@ -284,7 +284,7 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
 
-
+@include('sweetalert::alert')
 
 
 <script src="{{ asset('js/myjs.min.js') }}" defer></script>

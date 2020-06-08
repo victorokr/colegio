@@ -8,19 +8,7 @@
 
            
 
-            @if (session()->has('infoCreateMatricula'))
-            <script>
-                Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Su registro fue exitoso. ',
-                text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
-                showConfirmButton: true,
-                timer: 10500,
-                timerProgressBar: 'true',
-                })
-            </script>
-            @endif
+           
 
 	</div>	
   </div>
@@ -87,19 +75,21 @@
 
    
 
-    <button type="button" id="btnsweet" class="btn btn-primary btn-sm">sweet</button>
+    <!-- <button type="button" id="btnsweet" class="btn btn-primary btn-sm">sweet</button> -->
     <script>
         $('#btnsweet').on('click',function() {
 
-            Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Su registro fue exitoso. ',
-            text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
-            showConfirmButton: true,
-            timer: 10500,
-            timerProgressBar: 'true',
-             })
+            
+
+            // Swal.fire({
+            // position: 'top-end',
+            // icon: 'success',
+            // title: 'Su registro fue exitoso coño. ',
+            // text: "Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio",
+            // showConfirmButton: true,
+            // timer: 10500,
+            // timerProgressBar: 'true',
+            //  })
 
              
 
