@@ -3,25 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Matricula;
+use App\Añoelectivo;
 use App\Alumno;
-use App\FactorRH;
-use App\Eps;
-use App\Lugardenacimiento;
+use App\Estado;
 use App\Tipodocumento;
-use App\Grado;
-use App\Curso;
+use App\Tipodeaspirante;
 use App\Responsable;
+
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateMatriculaRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ListaalumnosController extends Controller
+class ListamatriculasController extends Controller
 {
+
     public function __construct()
     {
        $this->middleware('auth:docente'); 
 
        $this->middleware('roles:Administrador');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -29,18 +32,15 @@ class ListaalumnosController extends Controller
      */
     public function index(Request $request)
     {
-        $nombreAlumno = $request->get('nombres');
-        $grado        = $request->get('grado');
-        $curso        = $request->get('salon');
-        $gradoo       = Grado::pluck('grado','id_grado');
-        $cursoo        = Curso::pluck('salon','id_curso');
-
-        $listaAlumnos = Alumno::orderBy('id_alumno','DESC')
-        ->alumno($nombreAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
-        ->grado($grado)
-        ->curso($curso)
-        ->paginate(8);
-        return view('listaAlumnos.index', compact('listaAlumnos','gradoo','cursoo'));
+        {
+            $alumnoDocumento = $request->get('documento');
+            
+    
+            $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
+            ->alumnodocumentoo($alumnoDocumento)//alumnodocumentoo es el nombre del metodo en el modelo, pero sin scope
+            ->paginate(7);
+            return view('matriculas.index', compact('listaMatriculas'));
+        }
     }
 
     /**
@@ -49,7 +49,7 @@ class ListaalumnosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         //
     }
 
@@ -72,8 +72,7 @@ class ListaalumnosController extends Controller
      */
     public function show($id)
     {
-        // $listaAcudientes = Alumno::findOrFail($id);
-        // return view('listaAlumnos.show', compact('listaAcudientes'));
+        //
     }
 
     /**
@@ -84,15 +83,16 @@ class ListaalumnosController extends Controller
      */
     public function edit($id)
     {
-        $listaAlumnos  = Alumno::findOrFail($id);
+        $listaMatriculas     = Matricula::findOrFail($id);
 
-        $factorrhh           = FactorRH::pluck('factorRH','id_factorRH');
-        $epss                = Eps::pluck('EPS','id_eps');
-        $lugarDeNacimientoo  = Lugardenacimiento::pluck('lugarDeNacimiento','id_lugarDeNacimiento');
+        $añoElectivoo        = Añoelectivo::pluck('añoElectivo','id_añoElectivo');
+        $alumnoo             = Alumno::pluck('nombres','id_alumno');
+        $estadoo             = Estado::pluck('estado','id_estado');
         $tipoDeDocumentoo    = Tipodocumento::pluck('tipoDocumento','id_tipoDocumento');
-        $gradoo              = Grado::pluck('grado','id_grado');
+        $tipoDeAspirantee    = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
+        $responsablee        = Responsable::pluck('nombres','id_responsable');
 
-        return view('listaAlumnos.edit', compact('listaAlumnos','factorrhh','epss','lugarDeNacimientoo','gradoo'));
+        return view('matriculas.edit', compact('listaMatriculas','añoElectivoo','alumnoo','estadoo','tipoDeDocumentoo','tipoDeAspirantee','responsablee'));
     }
 
     /**
@@ -103,8 +103,11 @@ class ListaalumnosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        return redirect()->route('alumnos.index');
+    {   //return  $request->all();
+        $listaMatriculas     = Matricula::findOrFail($id);
+        $listaMatriculas     ->update($request->all());
+        Alert::success('', 'Matricula actualizada')->timerProgressBar();
+        return redirect()->route('matriculas.index');
     }
 
     /**
@@ -115,9 +118,6 @@ class ListaalumnosController extends Controller
      */
     public function destroy($id)
     {
-        $listaAlumnos = Alumno::findOrFail($id);
-        $listaAlumnos->delete();
-        Alert::success('', 'El Alumno fue eliminado satisfactoriamente')->timerProgressBar();
-        return back(); 
+        //
     }
 }

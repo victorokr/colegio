@@ -148,7 +148,7 @@
                     <li><a href="#"><i class="icono izquierda far fa-credit-card"></i> Matriculas <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             
-                            <li><a href="#">Lista de Matriculas</a>
+                            <li><a href="{{ url('lista/matriculas') }}">Lista de Matriculas</a>
                         </ul>
                     </li>
 

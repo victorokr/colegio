@@ -19,15 +19,17 @@
 
 <div class="container-global">
   <div class="card  mr-3 ml-0 mt-3">
-    <div class="card-header ">
-    <a><i class="icono fas fa-user-cog"></i> Editar Alumno</a>
+    <div class="card-header text-center">
+    <a><i class="icono fas fa-user-cog"></i> Editar matricula</a>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route('alumnos.update', $listaAlumnos->id_alumno) }}"  id="form">
+      <div class="container-cssform">
+        <form method="POST" action="{{ route('matriculas.update', $listaMatriculas->id_matricula) }}"  id="form">
             {!! method_field('PUT')!!}
-            @include('listaAlumnos.form')
+            @include('matriculas.form')
            
-        </form> 
+        </form>
+      </div>   
     </div>
   </div>
 </div>

@@ -29,11 +29,29 @@
     <a><i class="icono fas fa-users"></i>  Alumnos</a>
     </div>
     <div class="card-body">
-        <form method="GET" action="{{ route('acudientes.index') }}">
+        <form method="GET" action="{{ route('alumnos.index') }}">
           
               <div class="row mt-1">
                   <div class="col-sm">
-                      <input type="text" class="form-control mb-2" value="{{ request('nombres')}}" id="prueba" name="nombres" placeholder="Ingrese Nombres o apellidos">
+                      <input type="text" class="form-control form-control-sm mb-2" value="{{ request('nombres')}}" id="prueba" name="nombres" placeholder="busca por nombres, apellidos o documento">
+                  </div>
+                  <div class="col-sm-1">
+                    <select class="form-control form-control-sm" value="{{ request('id_grado')}}" name="grado">
+                      <option value="">grado</option>
+                        @foreach ($gradoo as $grado=>$Grado)    
+														     <option value="{{ $grado }}" {{ old('id_grado') }} >
+														      {{$Grado}} </option>
+												@endforeach
+                    </select>
+                  </div>
+                  <div class="col-sm-1">
+                    <select class="form-control form-control-sm" value="{{ request('id_curso')}}" name="salon">
+                      <option value="">curso</option>
+                        @foreach ($cursoo as $curso=>$Salon)    
+														     <option value="{{ $curso }}" {{ old('id_curso') }} >
+														      {{$Salon}} </option>
+												@endforeach
+                    </select>
                   </div>
                   <div class="col-sm">
                       <button type="submit" class="btn btn-primary mt-0 ml-0 mr-0 " title="Buscar"><i class="fas fa-search"></i></button>
@@ -53,6 +71,7 @@
                 <th scope="col">Acciones</th>
                 <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
+                <th scope="col">Grado</th>
                 <th scope="col">Curso</th>
                 <th scope="col">Documento</th>
                 <th scope="col">Telefono</th>
@@ -64,6 +83,8 @@
                 <th scope="col">lugarDeNacimiento</th>
                 <th scope="col">FactorRH</th>
                 <th scope="col">EPS</th>
+                <th scope="col">Acudiente</th>
+                <th scope="col">TelefonoAcudiente</th>
                 </tr>
             </thead>
               <tbody>
@@ -83,7 +104,8 @@
                   </td>
                   <td>{{ $listaAlumno->nombres }}</td>
                   <td>{{ $listaAlumno->apellidos }}</td>
-                  <td>{{ optional($listaAlumno->curso)->curso }}</td>
+                  <td>{{ optional($listaAlumno->grado)->grado }}</td>
+                  <td>{{ optional($listaAlumno->curso)->salon }}</td>
                   <td>{{ $listaAlumno->documento }}</td>
                   <td>{{ $listaAlumno->telefono }}</td>
                   <td>{{ $listaAlumno->email }}</td>
@@ -94,6 +116,8 @@
                   <td>{{ optional($listaAlumno->lugarDeNacimiento)->lugarDeNacimiento }}</td>
                   <td>{{ optional($listaAlumno->factorrh)->factorRH }}</td>
                   <td>{{ optional($listaAlumno->eps)->EPS }}</td>
+                  <td>{{ $listaAlumno->responsables->pluck('nombres')->implode(' - ')}}</td>
+                  <td>{{ $listaAlumno->responsables->pluck('telefono')->implode(' - ')}}</td> 
                   
                   @empty
 					          <div class="alert alert-info">No se encontraron resultados en nuestros registros</div>

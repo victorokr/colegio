@@ -46,3 +46,4 @@ Route::resource('lista/acudientes','ListaacudientesController');
 Route::resource('lista/alumnos','ListaalumnosController');
 Route::resource('crear/alumnosmatricula','CrearalumnosController');
 Route::resource('matricula','MatriculaController');
+Route::resource('lista/matriculas','ListamatriculasController');

@@ -37,12 +37,29 @@ class Matricula extends Model
 
 
 
-    public function scopeAlumnoscope($query, $alumno)
+    public function scopeAlumnodocumentoo($query, $alumnoDocumento)
     {
-        if($alumno)
-        return $query->whereHas("alumno", function ($query) use ($alumno){
-            $query->where('documento','LIKE', "%$alumno%");
+        if($alumnoDocumento)
+        return $query->whereHas("alumno", function ($query) use ($alumnoDocumento){
+            $query->where('documento','LIKE', "%$alumnoDocumento%");
         });
+    }
+
+
+    // nuevo o antiguo
+    public function tipoEstudiante() 
+    {
+        $fechaUpdatedMatricula = ($this->updated_at);
+        $fechaCreatedMatricula = ($this->created_at);
+        $estadoDeLaMatricula   = ($this->id_estado);
+
+        if($fechaUpdatedMatricula > $fechaCreatedMatricula and $estadoDeLaMatricula === 2){
+            return '2';
+        }
+        else{
+            return '1';
+        }
+
     }
 
 
