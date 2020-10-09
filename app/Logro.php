@@ -8,5 +8,5 @@ class Logro extends Model
 {
     protected $table = 'logro';
     protected $primaryKey = 'id_logro';
-    protected $fillable = ['codigo','indicadorLogro','recomendacion','id_docente'];
+    protected $fillable = ['logro','indicadorLogro','recomendacion','id_docente','id_asignatura'];
 }

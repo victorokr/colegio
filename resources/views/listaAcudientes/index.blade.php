@@ -26,7 +26,7 @@
 <div class="container-global">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-    <a><i class="icono fas fa-restroom"></i>  Acudientes</a>
+      <a><i class="icono fas fa-restroom"></i>  Acudientes</a>
     </div>
     <div class="card-body">
         <form method="GET" action="{{ route('acudientes.index') }}">
@@ -100,9 +100,9 @@
           </div>
           {{-- modal delete --}}
 			    <div class="modal" id="delete" tabindex="-1" role="dialog">
-				  <div class="modal-dialog" role="document">
-				   <form action="" id="deleteForm" method="POST">
-				    <div class="modal-content">
+				   <div class="modal-dialog" role="document">
+				    <form action="" id="deleteForm" method="POST">
+				     <div class="modal-content">
 				      <div class="modal-header" style="background: #FB1C1C" >
 				        <h5 class="modal-title">Eliminar Acudiente</h5>
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -138,7 +138,7 @@
                         }
 						       </script>
 			    </div> 
-      </div>
+    </div>
   </div>
 </div>
 

@@ -190,8 +190,8 @@
                     @if (auth()->user()->hasRoles(['Empleado']))
                     <li><a href="#"><i class="icono izquierda fas fa-book-open"></i> Asignaturas <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Crear Asignatura</a>
-                            <li><a href="#">Lista de Asignaturas</a>
+                            <li><a href="{{ url('lista/asignaturas/create') }}">Crear Asignatura</a>
+                            <li><a href="{{ url('lista/asignaturas') }}">Lista de Asignaturas</a>
                         </ul>
                     </li>
                     
