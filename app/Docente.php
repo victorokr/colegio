@@ -21,7 +21,7 @@ class Docente extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombres','apellidos','documento','telefono','direccion',
+        'nombres','documento','telefono','direccion',
         'email'  , 'password','lugarDeResidencia','id_escalafon','id_nivel','id_perfil',
     ];
 
@@ -122,7 +122,7 @@ class Docente extends Authenticatable
     {
         if($nombreDocente)
         return $query->where('nombres','LIKE',"%$nombreDocente%")
-        ->orWhere('apellidos','LIKE',"%$nombreDocente%");
+        ->orWhere('documento','LIKE',"%$nombreDocente%");
     }
 
 }

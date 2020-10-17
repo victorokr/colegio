@@ -4,16 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Asignatura;
+use App\Curso;
+use App\Docente;
+use App\Listado;
+use Illuminate\Validation\Rule;
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateAsignaturaRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class ListadoController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth:docente'); 
+
+       $this->middleware('roles:Administrador');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request )
+    {   
+        $busquedaCurso = $request-> get('asignatura');
+
+        $listaCursos = Listado::orderBy('id_listado','DESC')
+        ->consultaCurso($busquedaCurso)//consultaCurso es el nombre del metodo en el modelo, pero sin scope
+        ->paginate(8);
+        return view('listado.index', compact('listaCursos'));
     }
 
     /**
@@ -23,7 +45,7 @@ class ListadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('asignaturas.create');
     }
 
     /**
@@ -32,9 +54,13 @@ class ListadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateAsignaturaRequest $request)
     {
-        //
+        $listaAsignaturas    = Asignatura::create($request->all());
+
+        
+        Alert::toast('Asignatura creada ', 'success')->timerProgressBar();
+        return redirect()->route('asignaturas.index', compact('listaAsignaturas'));
     }
 
     /**
@@ -56,7 +82,11 @@ class ListadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listaAsignaturas    = Asignatura::findOrFail($id);
+
+        
+
+        return view('asignaturas.edit', compact('listaAsignaturas'));
     }
 
     /**
@@ -68,7 +98,13 @@ class ListadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), ['asignatura' =>['required','string','max:30',Rule::unique('asignatura')->ignore($id,'id_asignatura')]]);
+
+        $listaAsignaturas = Asignatura::findOrFail($id);
+         
+        $listaAsignaturas->update($request->all());
+        Alert::toast('Asignatura actualizada', 'success')->timerProgressBar();
+        return redirect()->route('asignaturas.index');
     }
 
     /**

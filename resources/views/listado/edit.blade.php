@@ -17,19 +17,20 @@
   </div>
 </div>
 
-<div class="container-angosto">
+<div class="container-global">
   <div class="card  mr-3 ml-0 mt-3">
-    <div class="card-header text-center"><a><i class="icono fas fa-user-cog"></i> Editar Docente</a>
+    <div class="card-header text-center">
+    <a><i class="icono fas fa-user-cog"></i> Editar Asignatura</a>
     </div>
-      <div class="card-body">
-        <div class="container-cssform">
-          <form method="POST" action="{{ route('docente.update', $listaDocentes->id_docente) }}"  id="form">
-              {!! method_field('PUT')!!}
-              @include('docentes.form')
-              
-          </form> 
-        </div>
-      </div>
+    <div class="card-body">
+      <div class="container-cssform">
+        <form method="POST" action="{{ route('asignaturas.update', $listaAsignaturas->id_asignatura) }}"  id="form">
+            {!! method_field('PUT')!!}
+            @include('asignaturas.form')
+           
+        </form>
+      </div>   
+    </div>
   </div>
 </div>
 

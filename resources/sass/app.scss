@@ -334,6 +334,15 @@ input.parsley-success,
 	font : .8em "typewriter", sans-serif;
 }
 
+//requiere input, asterisco rojo
+.asterisko:after {
+    content:" *";
+	color: red;
+	font-size: 17px;
+  }
+  
+  
+
 .container-cssform  {
 
 	/* Centrar el formulario en la página */

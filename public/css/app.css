@@ -11369,6 +11369,12 @@ textarea.parsley-error {
   font: 0.8em "typewriter", sans-serif;
 }
 
+.asterisko:after {
+  content: " *";
+  color: red;
+  font-size: 17px;
+}
+
 .container-cssform {
   /* Centrar el formulario en la página */
   margin: 0 auto;

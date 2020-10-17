@@ -12,6 +12,7 @@ use App\Areadeestudio;
 use App\Http\Requests\UpdateDocenteRequest;
 use App\Http\Requests\CreateDocenteRequest;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DocenteController extends Controller
 {
@@ -69,7 +70,8 @@ class DocenteController extends Controller
         $listaDocentes = Docente::create( $request->all() );
         $listaDocentes->roles()->attach($request->roles);
         $listaDocentes->areaDeEstudio()->attach($request->areaDeEstudio);
-        return redirect()->route('docente.index', compact('listaDocentes'))->with('infoCreate','Docente agregado');
+        Alert::toast('Docente creado', 'success')->timerProgressBar();
+        return redirect()->route('docente.index', compact('listaDocentes'));
     }
 
     /**
@@ -113,8 +115,19 @@ class DocenteController extends Controller
         $listaDocentes = Docente::findOrFail($id);
         $listaDocentes  ->roles()        ->sync($request->roles);
         $listaDocentes  ->areaDeEstudio()->sync($request->areaDeEstudio);
+
+        if (is_null($request->password)) {
+        $listaDocentes  ->update($request->except('password'));
+        Alert::toast('Docente actualizado', 'success')->timerProgressBar();
+        return redirect()->route('docente.index');
+        }
+        
+
+        else{
         $listaDocentes  ->update($request->all());
-        return back()->with('infoUpdate','Docente actualizado');
+        Alert::toast('Docente actualizado', 'success')->timerProgressBar();
+        return redirect()->route('docente.index');
+        }
     }
 
     /**
