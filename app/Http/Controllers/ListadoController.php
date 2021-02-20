@@ -20,7 +20,8 @@ class ListadoController extends Controller
     {
        $this->middleware('auth:docente'); 
 
-       $this->middleware('roles:Administrador');
+    //    colocar el except index
+       $this->middleware('roles:Administrador'); 
     }
 
     /**
@@ -82,11 +83,12 @@ class ListadoController extends Controller
      */
     public function edit($id)
     {
-        $listaAsignaturas    = Asignatura::findOrFail($id);
+        $listado    = Listado::findOrFail($id);
 
-        
-
-        return view('asignaturas.edit', compact('listaAsignaturas'));
+        $asignaturaa        = Asignatura::pluck('asignatura','id_asignatura');
+        $cursoo             = Curso::pluck('salon','id_curso');
+        $docentee           = Docente::pluck('nombres','id_docente');
+        return view('listado.edit', compact('listado','asignaturaa','cursoo','docentee'));
     }
 
     /**

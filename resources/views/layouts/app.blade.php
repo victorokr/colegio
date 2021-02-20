@@ -198,8 +198,8 @@
                 
                     <li><a href="#"><i class="icono izquierda fas fa-bookmark"></i> Logros <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Crear Logro</a>
-                            <li><a href="#">Lista de Logros</a>
+                            <!-- <li><a href="#">Crear Logro</a> -->
+                            <li><a href="{{ url('lista/logros') }}">Lista de Logros</a>
                         </ul>
                     </li>
                     <li><a href="#"><i class="icono izquierda fas fa-pencil-alt"></i> Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>

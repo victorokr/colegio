@@ -49,6 +49,12 @@
                         <div class="btn-group mr-2" role="group" aria-label="Second group">
                             <a class="editar btn btn-info btn-sm" data-tippy-content="editar" href="{{ route('listado.edit', $listaCurso->id_listado) }} "><i class="fas fa-edit"></i></a>
                         </div>
+                        <div class="btn-group ml-2" role="group" aria-label="Third group">
+                            <a class="editar btn btn-primary btn-sm" data-tippy-content="asignar logros" href="{{ route('listado.edit', $listaCurso->id_listado) }} "><i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="btn-group ml-3" role="group" aria-label="Third group">
+                            <a class="editar btn btn-success btn-sm" data-tippy-content="calificar" href="{{ route('listado.edit', $listaCurso->id_listado) }} "><i class="fas fa-edit"></i></a>
+                        </div>
                       </div>
                     </td> 
                    
