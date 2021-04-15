@@ -9,9 +9,10 @@ use App\Curso;
 use App\Docente;
 use App\Listado;
 use Illuminate\Validation\Rule;
+use Validator;
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreateAsignaturaRequest;
+use App\Http\Requests\CreateListadoRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ListadoController extends Controller
@@ -31,12 +32,13 @@ class ListadoController extends Controller
      */
     public function index(Request $request )
     {   
-        $busquedaCurso = $request-> get('asignatura');
+        $cursoo        = Curso::pluck('salon','id_curso');
+        $busquedaCurso = $request-> get('salon');
 
-        $listaCursos = Listado::orderBy('id_listado','DESC')
+        $listado = Listado::orderBy('id_listado','DESC')
         ->consultaCurso($busquedaCurso)//consultaCurso es el nombre del metodo en el modelo, pero sin scope
         ->paginate(8);
-        return view('listado.index', compact('listaCursos'));
+        return view('listado.index', compact('listado','cursoo'));
     }
 
     /**
@@ -45,8 +47,10 @@ class ListadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('asignaturas.create');
+    {   $asignaturaa        = Asignatura::pluck('asignatura','id_asignatura');
+        $docentee           = Docente::pluck('nombres','id_docente');
+        $cursoo             = Curso::pluck('salon','id_curso');
+        return view('listado.create',compact('asignaturaa', 'docentee', 'cursoo'));
     }
 
     /**
@@ -55,13 +59,34 @@ class ListadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateAsignaturaRequest $request)
+    public function store(Request $request)
     {
-        $listaAsignaturas    = Asignatura::create($request->all());
+        //validacion doble
+        $validator = Validator::make($request->all(), [
+            'id_curso' =>['required',Rule::unique('listado')->where(function ($query) use ($request){
+                return $query->where('id_asignatura', $request->id_asignatura)
+                ->where('id_docente', $request->id_docente);
+                
+            })],
+
+            'id_asignatura' =>['required',Rule::unique('listado')->where(function ($query) use ($request){
+                return $query->where('id_curso', $request->id_curso);
+                
+            })],
+
+        ]);
+
+
+        if ($validator->fails()) {
+            Alert::error('ups ', 'El docente ya existe con esta asignatura y curso')->timerProgressBar();
+            return back();
+        }
+
+        $listado    = Listado::create($request->all());
 
         
-        Alert::toast('Asignatura creada ', 'success')->timerProgressBar();
-        return redirect()->route('asignaturas.index', compact('listaAsignaturas'));
+        Alert::toast('listado asignado al docente', 'success')->timerProgressBar();
+        return redirect()->route('listado.index', compact('listado'));
     }
 
     /**
@@ -86,8 +111,8 @@ class ListadoController extends Controller
         $listado    = Listado::findOrFail($id);
 
         $asignaturaa        = Asignatura::pluck('asignatura','id_asignatura');
-        $cursoo             = Curso::pluck('salon','id_curso');
         $docentee           = Docente::pluck('nombres','id_docente');
+        $cursoo             = Curso::pluck('salon','id_curso');
         return view('listado.edit', compact('listado','asignaturaa','cursoo','docentee'));
     }
 
@@ -100,13 +125,34 @@ class ListadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate(request(), ['asignatura' =>['required','string','max:30',Rule::unique('asignatura')->ignore($id,'id_asignatura')]]);
+        //$this->validate(request(), ['asignatura' =>['required','string','max:30',Rule::unique('asignatura')->ignore($id,'id_asignatura')]]);
 
-        $listaAsignaturas = Asignatura::findOrFail($id);
+        //validacion doble
+        $validator = Validator::make($request->all(), [
+            'id_curso' =>['required',Rule::unique('listado')->ignore($id,'id_listado')->where(function ($query) use ($request){
+                return $query->where('id_asignatura', $request->id_asignatura)
+                ->where('id_docente', $request->id_docente);
+                
+            })],
+
+            'id_asignatura' =>['required',Rule::unique('listado')->ignore($id,'id_listado')->where(function ($query) use ($request){
+                return $query->where('id_curso', $request->id_curso);
+                
+            })],
+
+        ]);
+
+
+        if ($validator->fails()) {
+            Alert::error('ups ', 'El docente ya existe con esta asignatura y curso')->timerProgressBar();
+            return back();
+        }
+
+        $listado = Listado::findOrFail($id);
          
-        $listaAsignaturas->update($request->all());
-        Alert::toast('Asignatura actualizada', 'success')->timerProgressBar();
-        return redirect()->route('asignaturas.index');
+        $listado->update($request->all());
+        Alert::toast('listado actualizado correctamente', 'success')->timerProgressBar();
+        return redirect()->route('listado.index');
     }
 
     /**
@@ -117,6 +163,9 @@ class ListadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $listado = Listado::findOrFail($id);
+        $listado->delete();
+        Alert::toast('Listado eliminado', 'success')->timerProgressBar();
+        return back();
     }
 }

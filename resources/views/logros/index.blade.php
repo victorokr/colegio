@@ -86,29 +86,29 @@
           </div>
           {{-- modal delete --}}
 			    <div class="modal" id="delete" tabindex="-1" role="dialog">
-				  <div class="modal-dialog" role="document">
-				   <form action="" id="deleteForm" method="POST">
-				    <div class="modal-content">
-				      <div class="modal-header" style="background: #FB1C1C" >
-				        <h5 class="modal-title">Eliminar Logro</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-					      <div class="modal-body">
-					      	{!! csrf_field()!!}
-						    {!! method_field('DELETE')!!}
-					        <p>¿Está seguro de eliminar este logro?</p>
-					        {{-- <input type="hidden" name="id_materialBiblioteca" value=""> --}}
-					      </div>
-					      <div class="modal-footer">
-					      	<button type="submit" class="btn btn-danger" data-dismiss="modal"
-					      	 onclick="formSubmit()">Si</button>
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					      </div>
-				    </div>
-				   </form>
-				  </div>
+            <div class="modal-dialog" role="document">
+            <form action="" id="deleteForm" method="POST">
+              <div class="modal-content">
+                <div class="modal-header" style="background: #FB1C1C" >
+                  <h5 class="modal-title">Eliminar Logro</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                  <div class="modal-body">
+                    {!! csrf_field()!!}
+                  {!! method_field('DELETE')!!}
+                    <p>¿Está seguro de eliminar este logro?</p>
+                    {{-- <input type="hidden" name="id_materialBiblioteca" value=""> --}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal"
+                    onclick="formSubmit()">Si</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+              </div>
+            </form>
+            </div>
 				           <script type="text/javascript">
                         function deleteData(id_logro)
                         {

@@ -4,41 +4,64 @@
 
 
 <div class="container-global">
-  <div class="card  mr-3 ml-0 mt-3" >
-    <div class="card-header text-center "><a><i class="icono fas fa-book-open"></i> Crear Asignatura</a></div>
-     <div class="card-body ">
+  <div class="card  mr-3 ml-0 mt-3">
+    <div class="card-header text-center "><a><i class="fas fa-chalkboard-teacher"></i> asignar docente</a>
+    </div>
+    <div class="card-body">
       <div class="container-cssform">
-        <form method="POST" action="{{ route('asignaturas.store') }}" id="form" >
+        <form method="POST" action="{{ route('listado.store') }}" id="form" >
         {!!csrf_field() !!}
-        <!-- <h6 class="card-title text-center"><p class="card-text"><small class="text-muted ">Todos los campos son obligatorios</small></p></h6> -->
-            <div class="row justify-content-center ">
-              <div class=" col-sm-4 mt-4">   
-                <div class="form-group">
-                    <label for="label inputEmail4"> asignatura</label>
-                    <input type="text" class="form-control form-control-sm" id="inputAsignatura" name="asignatura" value="{{ old('asignatura') }}" required data-parsley-pattern="[a-zA-Z ]+$" data-parsley-length="[3, 30]" data-parsley-trigger="keyup"  />
-                    {!!$errors->first('asignatura','<span class=error>:message</span>')!!}
+          <div class="row justify-content-center ">
+            <div class=" col-sm-8 col-md-8 col-lg-6 mt-4">
+             <div class="card">
+              <div class="card-header text-center "> <small class="text-muted asterisko ">Obligatorio</small></div>
+              <div class="card-body">  
+                
+
+                <div class="form-group ">
+                        <label class="asterisko">Asignatura</label>
+                        <select id="inputAsignatura" class="form-control form-control-sm" name="id_asignatura"required data-parsley-required data-parsley-trigger="keyup">
+                        <option value="" selected>Seleccionar...</option>
+                            @foreach ($asignaturaa as $asignatura => $Asignatura)
+                                <option value="{{ $asignatura }}" {{ old('id_asignatura') }} > {{$Asignatura }} </option>
+                                {!!$errors->first('id_asignatura','<span class=error>:message</span>')!!}
+                            @endforeach
+                        </select>
+                </div>
+                <div class="form-group ">
+                    <label class="asterisko">Docente</label>
+                        <select id="inputPeriodo" class="form-control form-control-sm" name="id_docente" required data-parsley-required data-parsley-trigger="keyup" >
+                            <option value="" selected>Seleccionar...</option>
+                            @foreach ($docentee as $docente =>$Docente)
+                                <option value="{{ $docente }}" {{ old('id_docente') }} > {{$Docente }} </option>
+                                {!!$errors->first('id_docente','<span class=error>:message</span>')!!}
+                            @endforeach
+                        </select>
                 </div>
                 
                 
-                    <button type="submit" class="btn btn-success btn-sm btn-block  ">Crear Asignatura</button> 
+                <div class="form-group ">
+                    <label class="asterisko">Curso</label>
+                        <select id="inputGrado" class="form-control form-control-sm" name="id_curso"required data-parsley-required data-parsley-trigger="keyup">
+                        <option value="" selected>Seleccionar...</option>
+                            @foreach ($cursoo as $curso => $Curso)
+                                <option value="{{ $curso }}" {{ old('id_curso') }} > {{$Curso }} </option>
+                                {!!$errors->first('id_curso','<span class=error>:message</span>')!!}
+                            @endforeach
+                        </select>
+                </div>
                 
-
-              </div>  
-            </div>
-
-            <div class="form-row">
-             <!-- inputs en horizontal    -->
-            </div>
-
-
-            <div class="form-row">
-            </div>
-
+                
             
-        </form>
+                <button type="submit" class="btn btn-success btn-sm btn-block">Asignar docente</button>
+              </div>
+             </div>  
+            </div>
+          </div>   
+        </form> 
       </div>
-      </div>
-     </div>
+    </div>
+  </div>
 </div>
 
 @endsection

@@ -8,27 +8,36 @@
     </div>
     <div class="card-body">
           
-          <form method="GET" action="{{ route('asignaturas.index') }}">
+          <form method="GET" action="{{ route('listado.index') }}">
           
-              <div class="row mt-1">
-                  <div class="col-sm">
-                      <input type="text" class="form-control mb-2" value="{{ request('asignatura')}}" id="prueba" name="asignatura" placeholder="Filtrar por asignatura">
-                  </div>
-                  <div class="col-sm">
-                      <button type="submit" class="btn btn-primary mt-0 ml-0 mr-0 " data-tippy-content="Buscar"><i class="fas fa-search"></i></button>
-                      <a href="{{ url('lista/asignaturas') }}"   class="btn btn-light mt-0 ml-0 "data-tippy-content="restablecer"><i class="fas fa-reply"></i></a>
-                  </div>
-                  <div class="col-sm">
-                  <a href="{{ url('lista/asignaturas/create') }}" class="btn btn-primary mt-0 ml-0 mr-0 btn-sm"style="float:right;"><i class="fas fa-plus-circle"></i> Crear Asignatura</a>
-                  </div>
-              </div>
+            <div class="row mt-1">
+                <div class="col-sm-2">
+                    <label for="inputCity">filtrar por salon</label>
+                        <select id="inputGrado" class="form-control form-control-sm mt-1" name="salon" required data-parsley-required data-parsley-trigger="keyup" >
+                              <option value="" selected></option>
+                              @foreach ($cursoo as $curso =>$Curso)
+                                  <option value="{{ $curso }}" {{ old('id_curso') }} > {{$Curso }} </option>
+                                  {!!$errors->first('id_curso','<span class=error>:message</span>')!!}
+                              @endforeach
+                        </select>
+                   
+                </div>
+               
+                <div class="col-sm">
+                    <button type="submit" class="btn btn-primary mt-3 ml-0 mr-0 " data-tippy-content="Buscar"><i class="fas fa-search"></i></button>
+                    <a href="{{ url('listado') }}"   class="btn btn-light mt-3 ml-0 "data-tippy-content="restablecer"><i class="fas fa-reply"></i></a>
+                </div>
+                <div class="col-sm">
+                <a href="{{ url('listado/create') }}" class="btn btn-primary mt-4 ml-0 mr-0 btn-sm" data-tippy-content="agregue una asignatura y un salon a un docente" style="float:right;"><i class="fas fa-plus-circle"></i> Agregar</a>
+                </div>
+            </div>
           
           </form>
               
           
           <div class="table-responsive">  
             <table class="table table-sm table-hover table-striped  mt-2">
-            <caption> Asignaturas</caption>
+            <caption> Listado</caption>
             <thead >
                 <tr>
                 <th scope="col">Acciones</th>
@@ -39,7 +48,7 @@
                 </tr>
             </thead>
               <tbody>
-                @forelse ($listaCursos as $listaCurso)
+                @forelse ($listado as $listadoo)
                 <tr>
                     <td>
                       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -47,20 +56,21 @@
                             
                         </div>
                         <div class="btn-group mr-2" role="group" aria-label="Second group">
-                            <a class="editar btn btn-info btn-sm" data-tippy-content="editar" href="{{ route('listado.edit', $listaCurso->id_listado) }} "><i class="fas fa-edit"></i></a>
+                            <button class="eliminar btn btn-danger btn-sm mr-3" data-tippy-content="Eliminar" data-toggle="modal" onclick="deleteData({{$listadoo->id_listado}})" data-target="#delete"
+                            ><i class="fas fa-trash-alt"></i> </button>
+
+                            <a class="editar btn btn-info btn-sm" data-tippy-content="editar" href="{{ route('listado.edit', $listadoo->id_listado) }} "><i class="fas fa-edit"></i></a>
                         </div>
-                        <div class="btn-group ml-2" role="group" aria-label="Third group">
-                            <a class="editar btn btn-primary btn-sm" data-tippy-content="asignar logros" href="{{ route('listado.edit', $listaCurso->id_listado) }} "><i class="fas fa-edit"></i></a>
-                        </div>
+                        
                         <div class="btn-group ml-3" role="group" aria-label="Third group">
-                            <a class="editar btn btn-success btn-sm" data-tippy-content="calificar" href="{{ route('listado.edit', $listaCurso->id_listado) }} "><i class="fas fa-edit"></i></a>
+                            <a class="editar btn btn-success btn-sm" data-tippy-content="Evaluar" href="{{ route('listado.edit', $listadoo->id_listado) }} "><i class="fas fa-edit"></i></a>
                         </div>
                       </div>
                     </td> 
                    
-                    <td>{{ optional($listaCurso->asignatura)->asignatura }} </td>
-                    <td>{{ optional($listaCurso->docente)   ->nombres }} </td>
-                    <td>{{ optional($listaCurso->curso)     ->salon }} </td>
+                    <td>{{ optional($listadoo->asignatura)->asignatura }} </td>
+                    <td>{{ optional($listadoo->docente)   ->nombres }} </td>
+                    <td>{{ optional($listadoo->curso)     ->salon }} </td>
                    
                     
                     @empty
@@ -69,8 +79,48 @@
                 @endforelse
               </tbody>
             </table>
-            {{ $listaCursos->render() }} {{-- paginacion --}}
+            {{ $listado->render() }} {{-- paginacion --}}
           </div>
+          {{-- modal delete --}}
+          <div class="modal" id="delete" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+            <form action="" id="deleteForm" method="POST">
+              <div class="modal-content">
+                <div class="modal-header" style="background: #FB1C1C" >
+                  <h5 class="modal-title">Eliminar Listado</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                  <div class="modal-body">
+                    {!! csrf_field()!!}
+                  {!! method_field('DELETE')!!}
+                    <p>¿Está seguro de eliminar este listado?</p>
+                    {{-- <input type="hidden" name="id_materialBiblioteca" value=""> --}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal"
+                    onclick="formSubmit()">Si</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+              </div>
+            </form>
+            </div>
+				           <script type="text/javascript">
+                        function deleteData(id_listado)
+                        {
+                            var id = id_listado;
+                            var url = '{{ route("listado.destroy", ":id") }}';
+                            url = url.replace(':id', id);
+                            $("#deleteForm").attr('action', url);
+                        }
+
+                        function formSubmit()
+                        {
+                            $("#deleteForm").submit();
+                        }
+						       </script>
+			    </div>  
 
           
 			    
