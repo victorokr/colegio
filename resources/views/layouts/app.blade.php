@@ -211,8 +211,8 @@
 
                     <li><a href="#"><i class="icono izquierda fas fa-building"></i> Cursos <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Agregar Curso</a>
-                            <li><a href="#">Lista de Cursos</a>
+                            <li><a href="{{url('lista/cursos/create')}}">Agregar Curso</a>
+                            <li><a href="{{url('lista/cursos')}}">Lista de Cursos</a>
                         </ul>
                     </li>
 
