@@ -8,6 +8,7 @@ use App\Tipodeaspirante;
 use App\Responsable;
 use App\Alumno;
 use App\Matricula;
+use App\Grado;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateMatriculaRequest;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -48,11 +49,12 @@ class MatriculaController extends Controller
         // ->paginate(1);
 
         $añoElectivoo           = Añoelectivo::pluck('añoElectivo','id_añoElectivo');
+        $gradoo                 = Grado::pluck('grado','id_grado');
         //$tipoDeAspirantee       = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
         //$responsablee           = Responsable::pluck('nombres','id_responsable');
         //$alumnoo                = Alumno::pluck('nombres','id_alumno');
         
-        return view('mismatriculas.create', compact('añoElectivoo'));
+        return view('mismatriculas.create', compact('añoElectivoo','gradoo'));
     }
 
     /**
@@ -69,13 +71,13 @@ class MatriculaController extends Controller
             //"id_responsable"     => Auth::user()->id_responsable,
             "id_responsable"     => $request->input('id_responsable'),
             "id_añoElectivo"     => $request->input('id_añoElectivo'),
+            "id_grado"           => $request->input('id_grado'),
             "id_tipoDeAspirante" => '1',
             "id_alumno"          => $request->input('id_alumno'),
             "id_estado"          => '1',
         ]);
         Alert::success('Su registro fue exitoso', 'Para continuar con el proceso de matrícula, por favor diríjase con el recibo de pago a las instalaciones del colegio')->timerProgressBar();
-        return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_tipoDeAspirante','id_alumno','id_estado'))
-        ;
+        return redirect()->route('area.index', compact('crearMatricula','id_responsable','id_añoElectivo','id_grado','id_tipoDeAspirante','id_alumno','id_estado'));
 
     }
 

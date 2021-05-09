@@ -8,9 +8,9 @@ class Crearalumno extends Model
 {
     protected $table = 'alumno';
     protected $primaryKey = 'id_alumno';
-    protected $fillable = ['nombres','apellidos','documento','telefono',
-    'email','direccion','lugarDeResidencia','fechaDeNacimiento','id_curso',
-    'id_tipoDocumento','id_lugarDeNacimiento','id_factorRH','id_eps','id_grado'];
+    protected $fillable = ['nombres','documento','telefono',
+    'email','direccion','lugarDeResidencia','fechaDeNacimiento',
+    'id_tipoDocumento','id_lugarDeNacimiento','id_factorRH','id_eps'];
 
     public function factorrh()
     {
@@ -22,10 +22,7 @@ class Crearalumno extends Model
         return $this->belongsTo('App\Eps','id_eps');
     }
 
-    public function curso()
-    {
-        return $this->belongsTo('App\Curso','id_curso');
-    }
+    
 
     public function lugarDeNacimiento()
     {

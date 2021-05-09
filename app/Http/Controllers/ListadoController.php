@@ -22,7 +22,7 @@ class ListadoController extends Controller
        $this->middleware('auth:docente'); 
 
     //    colocar el except index
-       $this->middleware('roles:Administrador'); 
+       $this->middleware('roles:Administrador', ['except' =>['index']]); 
     }
 
     /**

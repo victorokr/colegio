@@ -46,7 +46,7 @@ class CrearalumnosController extends Controller
         $epss                = Eps::pluck('EPS','id_eps');
         $lugarDeNacimientoo  = Lugardenacimiento::pluck('lugarDeNacimiento','id_lugarDeNacimiento');
        // $tipoDeDocumentoo    = Tipodocumento::pluck('tipoDocumento','id_tipoDocumento');
-        $gradoo              = Grado::pluck('grado','id_grado');
+       
         return view('crearAlumnos.create', compact('factorrhh','epss','lugarDeNacimientoo','tipoDeDocumentoo','gradoo'));
     }
 
@@ -60,7 +60,7 @@ class CrearalumnosController extends Controller
     {   //return $request->all();
         $crearAlumno = Crearalumno::create([
             "nombres"              => $request->input('nombres'),
-            "apellidos"            => $request->input('apellidos'),
+           
             "documento"            => $request->input('documento'),
             "telefono"             => $request->input('telefono'),
             "email"                => $request->input('email'),
@@ -69,8 +69,7 @@ class CrearalumnosController extends Controller
             "fechaDeNacimiento"    => $request->input('fechaDeNacimiento'),
             "id_tipoDocumento"     => '3',
             "id_lugarDeNacimiento" => $request->input('id_lugarDeNacimiento'),
-            "id_grado"             => $request->input('id_grado'),
-            "id_curso"             => $request->input('id_curso'),
+            
             "id_factorRH"          => $request->input('id_factorRH'),
             "id_eps"               => $request->input('id_eps'),
             
@@ -90,12 +89,13 @@ class CrearalumnosController extends Controller
     public function show($id)
     {
         $añoElectivoo           = Añoelectivo::pluck('añoElectivo','id_añoElectivo');
+        $gradoo                 = Grado::pluck('grado','id_grado');
         //$tipoDeAspirantee       = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
         //$responsablee           = Responsable::pluck('nombres','id_responsable');
         //$alumnoo                = Alumno::pluck('nombres','id_alumno');
 
         $crearAlumno = Crearalumno::findOrFail($id);
-        return view('crearAlumnos.show',compact('crearAlumno','añoElectivoo'))->with('crearAlumno',$crearAlumno);
+        return view('crearAlumnos.show',compact('crearAlumno','añoElectivoo','gradoo'))->with('crearAlumno',$crearAlumno);
     }
 
     /**

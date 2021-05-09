@@ -55,16 +55,21 @@
                         <div class="btn-group mr-3" role="group" aria-label="First group">
                             
                         </div>
+
+                        @if (auth()->user()->hasRoles(['Administrador']))
                         <div class="btn-group mr-2" role="group" aria-label="Second group">
                             <button class="eliminar btn btn-danger btn-sm mr-3" data-tippy-content="Eliminar" data-toggle="modal" onclick="deleteData({{$listadoo->id_listado}})" data-target="#delete"
                             ><i class="fas fa-trash-alt"></i> </button>
 
                             <a class="editar btn btn-info btn-sm" data-tippy-content="editar" href="{{ route('listado.edit', $listadoo->id_listado) }} "><i class="fas fa-edit"></i></a>
                         </div>
-                        
+                        @endif
+
+                        @if (auth()->user()->hasRoles(['Empleado']))
                         <div class="btn-group ml-3" role="group" aria-label="Third group">
                             <a class="editar btn btn-success btn-sm" data-tippy-content="Evaluar" href="{{ route('listado.edit', $listadoo->id_listado) }} "><i class="fas fa-edit"></i></a>
                         </div>
+                        @endif
                       </div>
                     </td> 
                    

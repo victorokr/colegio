@@ -159,6 +159,20 @@
                         </ul>
                     </li>
 
+                    <li><a href="#"><i class="icono izquierda fas fa-building"></i> Cursos <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="{{url('lista/cursos/create')}}">Agregar Curso</a>
+                            <li><a href="{{url('lista/cursos')}}">Lista de Cursos</a>
+                        </ul>
+                    </li>
+
+                    <li><a href="#"><i class="icono izquierda fas fa-book-open"></i> Asignaturas <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="{{ url('lista/asignaturas/create') }}">Crear Asignatura</a>
+                            <li><a href="{{ url('lista/asignaturas') }}">Lista de Asignaturas</a>
+                        </ul>
+                    </li>
+
 
                     @endif
 
@@ -188,14 +202,6 @@
 
 
                     @if (auth()->user()->hasRoles(['Empleado']))
-                    <li><a href="#"><i class="icono izquierda fas fa-book-open"></i> Asignaturas <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{ url('lista/asignaturas/create') }}">Crear Asignatura</a>
-                            <li><a href="{{ url('lista/asignaturas') }}">Lista de Asignaturas</a>
-                        </ul>
-                    </li>
-                    
-                
                     <li><a href="#"><i class="icono izquierda fas fa-bookmark"></i> Logros <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             <!-- <li><a href="#">Crear Logro</a> -->
@@ -209,16 +215,7 @@
                         </ul>
                     </li>
 
-                    <li><a href="#"><i class="icono izquierda fas fa-building"></i> Cursos <i class="icono derecha fas fa-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{url('lista/cursos/create')}}">Agregar Curso</a>
-                            <li><a href="{{url('lista/cursos')}}">Lista de Cursos</a>
-                        </ul>
-                    </li>
-
                     
-
-
                     <li><a href="#"><i class="icono izquierda fas fa-cloud-upload-alt"></i> Cargar Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Cargar Calificaciones</a>
@@ -226,9 +223,6 @@
                         </ul> 
                     </li>
                    
-
-
-                    
                     <li><a href="#"><i class="icono izquierda fas fa-book-reader"></i> Item <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Item 1</a>
@@ -241,10 +235,6 @@
                             
                         </ul>
                     </li>
-                    
-
-                    
-
                     
                     <li><a href="#"><i class="icono izquierda fas fa-box-open"></i>Item <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>

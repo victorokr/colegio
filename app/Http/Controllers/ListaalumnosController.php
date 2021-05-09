@@ -30,17 +30,13 @@ class ListaalumnosController extends Controller
     public function index(Request $request)
     {
         $nombreAlumno = $request->get('nombres');
-        $grado        = $request->get('grado');
-        $curso        = $request->get('salon');
-        $gradoo       = Grado::pluck('grado','id_grado');
-        $cursoo        = Curso::pluck('salon','id_curso');
+        
 
         $listaAlumnos = Alumno::orderBy('id_alumno','DESC')
         ->alumno($nombreAlumno)//alumno es el nombre del metodo en el modelo, pero sin scope
-        ->grado($grado)
-        ->curso($curso)
+        
         ->paginate(8);
-        return view('listaAlumnos.index', compact('listaAlumnos','gradoo','cursoo'));
+        return view('listaAlumnos.index', compact('listaAlumnos'));
     }
 
     /**

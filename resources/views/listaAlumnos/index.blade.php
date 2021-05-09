@@ -32,27 +32,11 @@
         <form method="GET" action="{{ route('alumnos.index') }}">
           
               <div class="row mt-1">
-                  <div class="col-sm">
+                  <div class="col-sm-3">
                       <input type="text" class="form-control form-control-sm mb-2" value="{{ request('nombres')}}" id="prueba" name="nombres" placeholder="busca por nombres, apellidos o documento">
                   </div>
-                  <div class="col-sm-1">
-                    <select class="form-control form-control-sm" value="{{ request('id_grado')}}" name="grado">
-                      <option value="">grado</option>
-                        @foreach ($gradoo as $grado=>$Grado)    
-														     <option value="{{ $grado }}" {{ old('id_grado') }} >
-														      {{$Grado}} </option>
-												@endforeach
-                    </select>
-                  </div>
-                  <div class="col-sm-1">
-                    <select class="form-control form-control-sm" value="{{ request('id_curso')}}" name="salon">
-                      <option value="">curso</option>
-                        @foreach ($cursoo as $curso=>$Salon)    
-														     <option value="{{ $curso }}" {{ old('id_curso') }} >
-														      {{$Salon}} </option>
-												@endforeach
-                    </select>
-                  </div>
+                  
+                  
                   <div class="col-sm">
                       <button type="submit" class="btn btn-primary mt-0 ml-0 mr-0 " title="Buscar"><i class="fas fa-search"></i></button>
                       <a href="{{ url('lista/alumnos') }}"   class="btn btn-light mt-0 ml-0 "title="restablecer"><i class="fas fa-reply"></i></a>
@@ -71,8 +55,7 @@
                 <th scope="col">Acciones</th>
                 <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
-                <th scope="col">Grado</th>
-                <th scope="col">Curso</th>
+                
                 <th scope="col">Documento</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Email</th>
@@ -104,8 +87,7 @@
                   </td>
                   <td>{{ $listaAlumno->nombres }}</td>
                   <td>{{ $listaAlumno->apellidos }}</td>
-                  <td>{{ optional($listaAlumno->grado)->grado }}</td>
-                  <td>{{ optional($listaAlumno->curso)->salon }}</td>
+                  
                   <td>{{ $listaAlumno->documento }}</td>
                   <td>{{ $listaAlumno->telefono }}</td>
                   <td>{{ $listaAlumno->email }}</td>

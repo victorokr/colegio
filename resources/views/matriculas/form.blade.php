@@ -2,7 +2,7 @@
         <div class="row justify-content-center ">
           <div class=" col-sm-4 mt-4">
 
-                <div class="form-group ">
+                <!-- <div class="form-group ">
                         <label for="res">Responsable acudiente</label>
                             <select  class="res js-states form-control"   name="id_responsable"required data-parsley-required data-parsley-trigger="keyup">
                             
@@ -25,8 +25,8 @@
                                 });
                             </script>
                        
-                </div>
-                <div class="form-group ">
+                </div> -->
+                <!-- <div class="form-group ">
                         <label for="alum">Alumno</label>
                             <select id="mySelect" class="alum js-states form-control"   name="id_alumno"required data-parsley-required data-parsley-trigger="keyup">
                             
@@ -49,6 +49,54 @@
                                 });
                             </script>
                        
+                </div> -->
+                <div class="form-group ">
+                    <label for="inputCity">Grado al que se matricula</label>
+                        <select id="inputGrado" class="estadoBloqueado form-control form-control-sm" name="id_grado" required data-parsley-required data-parsley-trigger="keyup" >
+                            <option value="" selected>Seleccionar...</option>
+                            @foreach ($gradoo as $grado =>$Grado)
+                                <option value="{{ $grado }}" {{ old('id_grado', $listaMatriculas->id_grado)== $grado ? 'selected':'' }} > {{$Grado }} </option>
+                                {!!$errors->first('id_grado','<span class=error>:message</span>')!!}
+                            @endforeach
+                        </select>
+                        <script type="text/javascript" >
+                                $(document).ready(function() {
+
+                                $('.estadoBloqueado').select2();
+                                $("#mySelect").select2();
+
+                                $(".estadoBloqueado").select2({
+                                
+                                theme: "classic"							  
+                                });
+                                
+
+                                });
+                            </script>     
+                </div>
+                <div class="form-group ">
+                    <label for="inputCity">Asignar Curso</label>
+                        <select id="inputCurso" class="estadoBloqueado form-control form-control-sm" name="id_curso" required data-parsley-required data-parsley-trigger="keyup" >
+                            <option value="" selected>Seleccionar...</option>
+                            @foreach ($cursoo as $curso =>$Curso)
+                                <option value="{{ $curso }}" {{ old('id_curso', $listaMatriculas->id_curso)== $curso ? 'selected':'' }} > {{$Curso }} </option>
+                                {!!$errors->first('id_curso','<span class=error>:message</span>')!!}
+                            @endforeach
+                        </select>
+                        <script type="text/javascript" >
+                                $(document).ready(function() {
+
+                                $('.estadoBloqueado').select2();
+                                $("#mySelect").select2();
+
+                                $(".estadoBloqueado").select2({
+                                
+                                theme: "classic"							  
+                                });
+                                
+
+                                });
+                            </script>     
                 </div>
                 <div class="form-group ">
                         <label for="inputPerfil">Año electivo</label>

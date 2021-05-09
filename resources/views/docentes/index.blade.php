@@ -52,7 +52,7 @@
                 <tr>
                 <th scope="col">Acciones</th>
                 <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
+                <!-- <th scope="col">Apellidos</th> -->
                 <th scope="col">Documento</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Direccion</th>
@@ -81,7 +81,7 @@
                   </div>
                   </td>
                   <td>{{ $listaDocente->nombres }}</td>
-                  <td>{{ $listaDocente->apellidos }}</td>
+                  <!-- <td>{{ $listaDocente->apellidos }}</td> -->
                   <td>{{ $listaDocente->documento }}</td>
                   <td>{{ $listaDocente->telefono }}</td>
                   <td>{{ $listaDocente->direccion }}</td>

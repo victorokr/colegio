@@ -53,3 +53,5 @@ Route::resource('listado','ListadoController');
 Route::resource('lista/logros','ListalogrosController');
 
 Route::resource('lista/cursos','ListacursosController');
+
+Route::resource('evaluar/curso','EvaluarcursoController');

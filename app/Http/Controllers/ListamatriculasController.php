@@ -7,6 +7,8 @@ use App\Matricula;
 use App\Añoelectivo;
 use App\Alumno;
 use App\Estado;
+use App\Grado;
+use App\Curso;
 use App\Tipodocumento;
 use App\Tipodeaspirante;
 use App\Responsable;
@@ -34,12 +36,18 @@ class ListamatriculasController extends Controller
     {
         {
             $alumnoDocumento = $request->get('documento');
+            $grado        = $request->get('grado');
+            $curso        = $request->get('salon');
+            $gradoo       = Grado::pluck('grado','id_grado');
+            $cursoo       = Curso::pluck('salon','id_curso');
             
     
             $listaMatriculas = Matricula::orderBy('id_matricula','DESC')
             ->alumnodocumentoo($alumnoDocumento)//alumnodocumentoo es el nombre del metodo en el modelo, pero sin scope
+            ->grado($grado)
+            ->curso($curso)
             ->paginate(7);
-            return view('matriculas.index', compact('listaMatriculas'));
+            return view('matriculas.index', compact('listaMatriculas','gradoo','cursoo'));
         }
     }
 
@@ -88,11 +96,12 @@ class ListamatriculasController extends Controller
         $añoElectivoo        = Añoelectivo::pluck('añoElectivo','id_añoElectivo');
         $alumnoo             = Alumno::pluck('nombres','id_alumno');
         $estadoo             = Estado::pluck('estado','id_estado');
-        $tipoDeDocumentoo    = Tipodocumento::pluck('tipoDocumento','id_tipoDocumento');
+        $gradoo              = Grado::pluck('grado','id_grado');
+        $cursoo              = Curso::pluck('salon','id_curso');
         $tipoDeAspirantee    = Tipodeaspirante::pluck('tipoDeAspirante','id_tipoDeAspirante');
         $responsablee        = Responsable::pluck('nombres','id_responsable');
 
-        return view('matriculas.edit', compact('listaMatriculas','añoElectivoo','alumnoo','estadoo','tipoDeDocumentoo','tipoDeAspirantee','responsablee'));
+        return view('matriculas.edit', compact('listaMatriculas','añoElectivoo','alumnoo','estadoo','gradoo','cursoo','tipoDeAspirantee','responsablee'));
     }
 
     /**
@@ -105,7 +114,7 @@ class ListamatriculasController extends Controller
     public function update(Request $request, $id)
     {   //return  $request->all();
         $listaMatriculas     = Matricula::findOrFail($id);
-        $listaMatriculas     ->update($request->all());
+        $listaMatriculas     ->update($request->except('id_responsable','id_alumno'));
         Alert::success('', 'Matricula actualizada')->timerProgressBar();
         return redirect()->route('matriculas.index');
     }
