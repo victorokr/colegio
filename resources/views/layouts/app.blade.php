@@ -208,7 +208,7 @@
                             <li><a href="{{ url('lista/logros') }}">Lista de Logros</a>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="icono izquierda fas fa-pencil-alt"></i> Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
+                    <li><a href="#"><i class="icono izquierda fas fa-pencil-alt"></i> Evaluar <i class="icono derecha fas fa-chevron-down"></i></a>
                         <ul>
                             {{-- <li><a href="#">Agregar Calificaciones</a></li> --}}
                             <li><a href="{{url('listado')}}">Materias a evaluar</a></li> 

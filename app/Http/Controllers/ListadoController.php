@@ -31,9 +31,10 @@ class ListadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request )
-    {   
+    {   // return $request->all();
         $cursoo        = Curso::pluck('salon','id_curso');
         $busquedaCurso = $request-> get('salon');
+        // dd($busquedaCurso);
 
         $listado = Listado::orderBy('id_listado','DESC')
         ->consultaCurso($busquedaCurso)//consultaCurso es el nombre del metodo en el modelo, pero sin scope

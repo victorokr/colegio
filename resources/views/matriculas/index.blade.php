@@ -85,7 +85,7 @@
                       </div>
                     </td> 
                    
-                    <td>{{ optional($listaMatricula->alumno)->nombres }} {{ optional($listaMatricula->alumno)->apellidos }}</td>
+                    <td>{{ optional($listaMatricula->alumno)->nombres }} </td>
                     <td>{{ optional($listaMatricula->alumno)->documento }}
                     <td>{{ optional($listaMatricula->grado)->grado }}</td>
                     <td>{{ optional($listaMatricula->curso)->salon }}</td>
