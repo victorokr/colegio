@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Periodo;
+use Carbon\Carbon;
 
 class Evaluarcurso extends Model
 {
@@ -43,6 +45,11 @@ class Evaluarcurso extends Model
         if($curso)
         return $query->where('id_curso','LIKE',"%$curso%");
     }
+
+
+    
+    
+
 
 
 }
