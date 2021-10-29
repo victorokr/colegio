@@ -62,7 +62,7 @@ class EvaluarcursoController extends Controller
 
 
     public  function calcularPeriodo(){
-        
+        //toArray convierte un objeto elocuent en un array plano
         $fechainicioo  = Periodo::pluck('fechainicio')->toArray();
         $fechafinn     = Periodo::pluck('fechafin')->toArray();
 
@@ -117,21 +117,12 @@ class EvaluarcursoController extends Controller
     public function store(Request $request)
     {
          //return $request->all();
-        // $idAlumno         = $request->get('idAlumno');
-        //dd($idAlumno);
+        
 
-
-
-        // public function calcularPromedio()
-        // {
-        //     // return  $request->all( 'nota1','nota2','nota3','nota4','nota5','nota6');
-        // }
-
-
-        // $calcularPromedio = $request->all( 'nota1','nota2','nota3','nota4','nota5','nota6')->avg();
-        // dd($calcularPromedio);
-
-
+        $notas =  $request->all( 'nota1','nota2','nota3','nota4','nota5','nota6');
+        $calcularPromedio = array_sum($notas)/6;
+        $numeroFormateado = bcdiv($calcularPromedio, '1','1'); //bcdiv no redondea el resultado
+        //dd($numeroFormateado);
 
 
 
@@ -144,7 +135,7 @@ class EvaluarcursoController extends Controller
             "nota4" => $request->input('nota4'),
             "nota5" => $request->input('nota5'),
             "nota6" => $request->input('nota6'),
-            "promedio" => '3',
+            "promedio"      => ($numeroFormateado),
             "id_asignatura" => $request->input('id_asignatura'),
             "id_alumno"     => $request->input('id_alumno'),
             "id_curso"      => $request->input('id_curso'),
@@ -152,8 +143,8 @@ class EvaluarcursoController extends Controller
             "id_docente"    => $request->input('id_docente'),
 
         ]);
-        // return $request->all();
-        Alert::success('Su calificacion fue exitosa', '')->timerProgressBar();
+        
+        Alert::toast('Su calificacion fue exitosa', 'success')->timerProgressBar();
         return redirect()-> back();
     }
 
