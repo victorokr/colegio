@@ -80,6 +80,7 @@
                                     'evaluar.index',
                                     array (
                                     'idAsignatura' => ($listadoo->asignatura)->id_asignatura,
+                                    'Asignatura' => ($listadoo->asignatura)->asignatura,
                                     'idCurso' => ($listadoo->curso)->id_curso,
                                     'docentee' => ($listadoo->docente)->id_docente,
                                     'cursoo' => ($listadoo->curso)->salon,

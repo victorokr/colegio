@@ -5,7 +5,7 @@
 <div class="container-angosto">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-    <a><i class="icono  fas fa-folder-open"></i> Evaluar</a>
+    <a><i class="icono  fas fa-folder-open"></i> Evaluar {{ Request ('Asignatura') }}</a>
     </div>
     <div class="card-body">
           
@@ -14,11 +14,10 @@
               <div class="row mt-1">
                   
                   <div class="col-sm-2">
-                  <input type="text" class="form-control form-control-sm mb-2" value="{{ request('cursoo')}}" id="prueba" name="cursoo" placeholder="busca por curso">
+                  <input type="text" class="form-control form-control-sm mb-2"  id="prueba" name="" placeholder="periodo {{ \App\Http\Controllers\EvaluarcursoController::calcularPeriodo() }} " disabled >
                   </div>
                   <div class="col-sm">
-                      <button type="submit" class="btn btn-primary btn-sm mt-0 ml-0 mr-0 mb-2 " data-tippy-content="Buscar"><i class="fas fa-search"></i></button>
-                      <a href="{{ url('evaluar') }}"   class="btn btn-light btn-sm mt-0 ml-0 mb-2 "data-tippy-content="restablecer"><i class="fas fa-reply"></i></a>
+                     
                   </div>
                   <div class="col-sm">
                  
@@ -59,7 +58,7 @@
                     <td>{{ optional($listaCurso->alumno)->nombres }}</td>
                     
                     <td>{{ optional($listaCurso->curso)->salon }}</td>
-                    <td>{{ optional($listaCurso->alumno)->id_alumno }}</td>
+                    <!-- <td>{{ optional($listaCurso->alumno)->id_alumno }}</td> -->
                    
                     <!-- <td>{{ Request ('idAsignatura') }}</td> -->
                     
@@ -71,7 +70,7 @@
               </tbody>
             </table>
             
-            {{ $listaCursos->render() }} {{-- paginacion --}}
+            
           </div>
            
           

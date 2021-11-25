@@ -42,7 +42,7 @@ class EvaluarcursoController extends Controller
                 $curso        = $request->get('cursoo');
                 $listaCursos = Matricula::orderBy('id_matricula','DESC')
                 ->curso($curso) //curso es el nombre del metodo en el modelo, pero sin scope
-                ->paginate(15);
+                ->paginate(150);//la paginacion no se debe habilitar porque borra los parametros de la url
                 return view('evaluarCurso.index', compact('listaCursos'));
                 
             }
@@ -61,7 +61,7 @@ class EvaluarcursoController extends Controller
 
 
 
-    public  function calcularPeriodo(){
+    public static function calcularPeriodo(){
         //toArray convierte un objeto elocuent en un array plano
         $fechainicioo  = Periodo::pluck('fechainicio')->toArray();
         $fechafinn     = Periodo::pluck('fechafin')->toArray();
