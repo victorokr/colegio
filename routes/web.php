@@ -54,4 +54,6 @@ Route::resource('lista/logros','ListalogrosController');
 
 Route::resource('lista/cursos','ListacursosController');
 
+//Route::resource('evaluar','EvaluarcursoController')->middleware('signed');
+//URL::signedRoute('evaluar.index');
 Route::resource('evaluar','EvaluarcursoController');

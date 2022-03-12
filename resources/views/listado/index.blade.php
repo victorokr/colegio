@@ -76,7 +76,7 @@
 
                               <a class="editar btn btn-success btn-sm" type="submit" data-tippy-content="Evaluar"
                                 href="{{
-                                  route (
+                                  URL::signedRoute (
                                     'evaluar.index',
                                     array (
                                     'idAsignatura' => ($listadoo->asignatura)->id_asignatura,

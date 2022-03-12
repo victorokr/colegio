@@ -10,7 +10,7 @@ class Evaluarcurso extends Model
 {
     protected $table = 'matricula';
     protected $primaryKey = 'id_matricula';
-    protected $fillable = ['id_añoElectivo','id_tipoDeAspirante','id_responsable','id_alumno','id_estado','id_curso','id_grado'];
+    protected $fillable = ['nota1','nota2','nota3','nota4','nota5','nota6'];
 
     public function alumno()
     {

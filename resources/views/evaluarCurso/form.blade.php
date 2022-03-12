@@ -29,27 +29,29 @@
                                       <input type="text" class="form-control form-control-sm" id="inputNota6" name="nota6" value="{{ old('nota6') }}" required data-parsley-length="[1, 3]" data-parsley-pattern="/^[\d]{0,11}(\.[\d]{1,2})?$/" data-parsley-min="1" data-parsley-max="5" data-parsley-trigger="keyup" />
                                       {!!$errors->first('nota6','<span class=error>:message</span>')!!}
                                   </div>
-                                  <!-- <div class="form-group">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
-                                  </div> -->
+                                  
 
-                                  <input type="hidden" name="id_asignatura"
-                                  value="{{ request('idAsignatura') }}">
+                                  <input type="hidden" name="id_asignatura" 
+                                  value="{{    Crypt::encrypt (request('idAsignatura')) }}" >
+                                  
+                                  
+      
 
                                   <input type="hidden" name="id_curso"
-                                  value="{{ request('idCurso') }}">
+                                  value="{{ Crypt::encrypt(request('idCurso')) }}">
 
-                                  <input type="hidden" name="id_docente"
-                                  value="{{ Auth::user()->id_docente }}"> 
+                                  
 
                                   <input type="hidden" name="id_alumno" id="idAlumnoModal"
                                   value="">
 
-                                 
+                                  
 
                                   
+
                                   
+                                 
+
                                   <div class="modal-footer">
                                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                                     <button type="submit" class="btn btn-primary">Evaluar</button>
