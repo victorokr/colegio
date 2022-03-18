@@ -5,7 +5,7 @@
 <div class="container-angosto">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-    <a><i class="icono  fas fa-folder-open"></i> Evaluar {{ Request ('Asignatura') }}</a>
+    <a><i class="icono  fas fa-folder-open"></i> Evaluar {{ Request ('Asignatura') }} curso {{ Request ('cursoo') }} </a>
     </div>
     <div class="card-body">
           
@@ -45,23 +45,24 @@
                         <div class="btn-group mr-2" role="group" aria-label="First group">
                         </div>
 
-
-                        
-                        <div class="btn-group mr-2" role="group" aria-label="Second group">
-                          <a class="btn btn-primary btn-sm pull-right" type="submit" data-tippy-content="Calificar Alumno"  onclick="insertarId({{$listaCurso->id_alumno}})" data-toggle="modal" data-target="#create" 
-                          href="#"><i class="fas fa-edit"></i></a>    
-                        </div>
+                        @if(App\Calificacion::where('id_alumno',$listaCurso->alumno->id_alumno)->exists() && App\Calificacion::where('id_periodo',\App\Http\Controllers\EvaluarcursoController::calcularPeriodo())->exists())
+                         <!-- ¿? -->
+                        @else
+                          <div class="btn-group mr-2" role="group" aria-label="Second group">
+                            <a class="btn btn-primary btn-sm pull-right" type="submit" data-tippy-content="Calificar Alumno"  onclick="insertarId({{$listaCurso->id_alumno}})" data-toggle="modal" data-target="#create" 
+                            href="#"><i class="fas fa-edit"></i></a>    
+                          </div>
                         
                       </div>
                     </td> 
                    
-                    <td>{{ optional($listaCurso->alumno)->nombres }}</td>
-                    
-                    <td>{{ optional($listaCurso->curso)->salon }}</td>
-                    <!-- <td>{{ optional($listaCurso->alumno)->id_alumno }}</td> -->
-                   
-                    <!-- <td>{{ Request ('idAsignatura') }}</td> -->
-                    
+                            <td>{{ optional($listaCurso->alumno)->nombres }}</td>
+                            
+                            <td>{{ optional($listaCurso->curso)->salon }}</td>
+                            <!-- <td>{{ optional($listaCurso->alumno)->id_alumno }}</td> -->
+                          
+                            <!-- <td>{{ Request ('idAsignatura') }}</td> -->
+                        @endif
                     @empty
 					          <div class="alert alert-info">No se encontraron resultados en nuestros registros</div>
 
