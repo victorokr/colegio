@@ -8,5 +8,5 @@ class Periodo extends Model
 {
     protected $table = 'periodo';
     protected $primaryKey = 'id_periodo';
-    protected $fillable = ['periodo'];
+    protected $fillable = ['periodo','fechainicio','fechafin'];
 }

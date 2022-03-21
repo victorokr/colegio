@@ -173,6 +173,13 @@
                         </ul>
                     </li>
 
+                    <li><a href="#"><i class="icono izquierda fas fa-history"></i> Periodo académico <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="{{ url('periodo') }}">Establecer Periodo</a>
+                            
+                        </ul>
+                    </li>
+
 
                     @endif
 
