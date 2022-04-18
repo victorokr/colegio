@@ -221,6 +221,11 @@
                             <li><a href="{{url('listado')}}">Materias a evaluar</a></li> 
                         </ul>
                     </li>
+                    <li><a href="#"><i class="icono izquierda fas fa-book-reader"></i> Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="{{url('calificaciones')}}">Ver Calificaciones</a></li> 
+                        </ul>
+                    </li>
 
                     
                     <li><a href="#"><i class="icono izquierda fas fa-cloud-upload-alt"></i> Cargar Calificaciones <i class="icono derecha fas fa-chevron-down"></i></a>

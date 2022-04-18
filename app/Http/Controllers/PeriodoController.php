@@ -8,6 +8,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PeriodoController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth:docente'); 
+
+       $this->middleware('roles:Administrador');
+    }
     /**
      * Display a listing of the resource.
      *

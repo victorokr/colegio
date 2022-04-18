@@ -58,3 +58,4 @@ Route::resource('lista/cursos','ListacursosController');
 Route::resource('evaluar','EvaluarcursoController');
 
 Route::resource('periodo','PeriodoController');
+Route::resource('calificaciones','CalificacionesController');
