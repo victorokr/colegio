@@ -4,7 +4,7 @@
 <div class="container-angosto">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-      <a><i class="icono  fas fa-folder-open"></i> Calificaciones</a>
+      <a><i class="icono  fas fa-folder-open"></i> Calificaciones año: {{ Carbon\Carbon::now()->year }}. Periodo en curso: {{ \App\Http\Controllers\EvaluarcursoController::calcularPeriodo() }}</a>
     </div>
     <div class="card-body">
           
@@ -112,9 +112,10 @@
           </form>
               
           
-          <div class="table-responsive">  
-            <table class="table table-sm table-hover table-striped  mt-2">
-            <caption> Listado</caption>
+          <div class="table-responsive">
+               
+            <table  class="table table-sm table-hover table-striped  mt-2">
+            <caption> Calificaciones</caption>
             <thead >
                 <tr>
                 <th scope="col">Acciones</th>
@@ -129,7 +130,7 @@
                 <th scope="col">alumno</th>
                 <th scope="col">curso</th>
                 <th scope="col">periodo</th>
-                <th scope="col">docente</th>
+                
                 
                 </tr>
             </thead>
@@ -142,24 +143,19 @@
                             
                         </div>
 
-                        @if (auth()->user()->hasRoles(['Administrador']))
-                        <div class="btn-group mr-2" role="group" aria-label="Second group">
-                            <button class="eliminar btn btn-danger btn-sm mr-3" data-tippy-content="Eliminar" data-toggle="modal" onclick="deleteData({{ $listaCalificacion->id_calificacion}})" data-target="#delete"
-                            ><i class="fas fa-trash-alt"></i> </button>
-
-                            <a class="editar btn btn-info btn-sm" data-tippy-content="editar" href="{{ route('calificaciones.edit', $listaCalificacion->id_calificacion) }} "><i class="fas fa-edit"></i></a>
+                        @if (auth()->user()->hasRoles(['Empleado']))
+                        <div class="btn-group " role="group" aria-label="Second group">
+                            <button class="editar btn btn-info btn-sm" data-tippy-content="editar"  data-toggle="modal" data-target="#modalEdit" data-minota1="{{ $listaCalificacion->nota1 }}" data-minota2="{{ $listaCalificacion->nota2 }}" data-minota3="{{ $listaCalificacion->nota3 }}" data-minota4="{{ $listaCalificacion->nota4 }}" data-minota5="{{ $listaCalificacion->nota5 }}" data-minota6="{{ $listaCalificacion->nota6 }}" data-idcalificacion="{{ $listaCalificacion->id_calificacion }}" ><i class="fas fa-edit"></i></button>
                         </div>
                         @endif
 
-                        @if (auth()->user()->hasRoles(['Empleado']))
-                        <form method="GET" action="{{ route('evaluar.index') }}">
-                        <div class="btn-group ml-3" role="group" aria-label="Third group">
-                        
-
-                              
-
+                        @if (auth()->user()->hasRoles(['Administrador']))
+                       
+                        <div class="btn-group ml-1" role="group" aria-label="Third group">
+                            <button class="eliminar btn btn-danger btn-sm mr-3" data-tippy-content="Eliminar" data-toggle="modal" onclick="deleteData({{ $listaCalificacion->id_calificacion}})" data-target="#delete"
+                            ><i class="fas fa-trash-alt"></i> </button>
                         </div>
-                        </form>
+                        
                         @endif
                       </div>
                     </td> 
@@ -175,7 +171,7 @@
                     <td>{{ optional($listaCalificacion->alumno)    ->nombres }} </td>
                     <td>{{ optional($listaCalificacion->curso)     ->salon }} </td>
                     <td>{{ optional($listaCalificacion->periodo)   ->id_periodo }} </td>
-                    <td>{{ optional($listaCalificacion->docente)   ->nombres }} </td>
+                    <!-- <td>{{ optional($listaCalificacion->docente)   ->nombres }} </td> -->
                     
                    
                     
@@ -187,6 +183,52 @@
             </table>
             {{ $listaCalificaciones->render() }} {{-- paginacion --}}
           </div>
+          {{-- modal edit --}}
+          <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                                <h5 class="modal-title" id="create">Editar Calificacion  </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                          </div>
+                          <div class="modal-body">
+                                <form method="POST" action="{{ route('calificaciones.update','prueba') }}"  id="form">
+                                  {!! method_field('PUT')!!}
+                                  <input type="hidden" name="id_calificacion" id="idcalificacion" value="">
+                                  @include('calificaciones.form')
+                                </form>
+                          </div>
+                              
+                      </div>
+                  </div>
+                  <script>
+                    $('#modalEdit').on('show.bs.modal', function (event) {
+
+                    //console.log("modal abierta");
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+                    var nota1 = button.data('minota1') // Extract info from data-* attributes. data-minota1 sale de button edit 
+                    var nota2 = button.data('minota2')
+                    var nota3 = button.data('minota3')
+                    var nota4 = button.data('minota4')
+                    var nota5 = button.data('minota5')
+                    var nota6 = button.data('minota6')
+                    var idcal = button.data('idcalificacion')
+                    
+                    var modal = $(this)
+                    
+                    modal.find('.modal-body #nota1').val(nota1);//#nota1 es el id del input
+                    modal.find('.modal-body #nota2').val(nota2);
+                    modal.find('.modal-body #nota3').val(nota3);
+                    modal.find('.modal-body #nota4').val(nota4);
+                    modal.find('.modal-body #nota5').val(nota5);
+                    modal.find('.modal-body #nota6').val(nota6);
+                    modal.find('.modal-body #idcalificacion').val(idcal);
+                    })
+                  </script>
+          </div>
+
           {{-- modal delete --}}
           <div class="modal" id="delete" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -228,7 +270,7 @@
 						       </script>
 			    </div>  
 
-          
+                 
 			    
 
            

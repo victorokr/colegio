@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Calificacion;
 use App\Curso;
-use App\Listado;
+
 use App\Periodo;
 use App\Asignatura;
-use App\Alumno;
+use RealRashid\SweetAlert\Facades\Alert;
+
 use Illuminate\Support\Facades\Auth;
+use App\Carbon;
 
 class CalificacionesController extends Controller
 {
@@ -17,7 +19,7 @@ class CalificacionesController extends Controller
     {
        $this->middleware('auth:docente'); 
 
-       $this->middleware('roles:Administrador');
+       $this->middleware('roles:Empleado');
     }
     /**
      * Display a listing of the resource.
@@ -38,7 +40,7 @@ class CalificacionesController extends Controller
        
         
        // $listacursos  = new Calificacion();
-       // $listaCal = Calificacion::all();
+       
 
         $listaCalificaciones = Calificacion::orderBy('id_calificacion','DESC')
         ->consultaCurso($curso)//consultaCurso es el nombre del metodo en el modelo, pero sin scope
@@ -46,16 +48,8 @@ class CalificacionesController extends Controller
         ->consultaAsignatura($asignatura)
         ->consultaNombre($nombreAlumno)
         ->paginate(8);
-        // $nombree      = Alumno::where('id_alumno','=',Calificacion::pluck('id_alumno'));
-        // dd($nombree);
-       //$filtroCursoo = $listaCal->$listacursos->curso()->first();
        
-       //$filtroCursoo = $listaCalificaciones->  where('id_docente','=', Auth::user()->id_docente);
-    //    $filtroCursoo = Calificacion::whereHas('curso', function ($query){
-    //        return $query->where('id_curso', '=', 'id_curso');
-    //    })->get();
-       //dd($filtroCursoo);
-       //$cursoo = $filtroCursoo;
+    
         return view('calificaciones.index', compact('listaCalificaciones','cursoo','periodoo','asignaturaa'));
     }
 
@@ -111,7 +105,26 @@ class CalificacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request->all();
+        $calificacion = Calificacion::findOrFail($request->id_calificacion);
+
+        $notas =  $request->all( 'nota1','nota2','nota3','nota4','nota5','nota6');
+        $calcularPromedio = array_sum($notas)/6;
+        $numeroFormateado = bcdiv($calcularPromedio, '1','1'); //bcdiv no redondea el resultado
+        //"promedio"      => ($numeroFormateado),
+        
+         
+        $calificacion->update([
+            "nota1" => $request->input('nota1'),
+            "nota2" => $request->input('nota2'),
+            "nota3" => $request->input('nota3'),
+            "nota4" => $request->input('nota4'),
+            "nota5" => $request->input('nota5'),
+            "nota6" => $request->input('nota6'),
+            "promedio"      => ($numeroFormateado),
+        ]);
+        Alert::toast('nota actualizada correctamente', 'success')->timerProgressBar();
+        return redirect()->route('calificaciones.index');
     }
 
     /**
