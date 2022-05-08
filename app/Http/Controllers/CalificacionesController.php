@@ -133,8 +133,12 @@ class CalificacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $ids = $request->ids;
+        $calificacion = Calificacion::whereIn('id_calificacion',$ids);
+        $calificacion->delete();
+        Alert::toast('calificacion eliminada', 'success')->timerProgressBar();
+        return back();
     }
 }

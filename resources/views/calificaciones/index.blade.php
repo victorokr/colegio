@@ -105,7 +105,7 @@
                     <a href="{{ url('calificaciones') }}"   class="btn btn-light mt-3 ml-0 "data-tippy-content="restablecer"><i class="fas fa-reply"></i></a>
                 </div>
                 <div class="col-sm">
-                <!-- <a href="{{ url('listado/create') }}" class="btn btn-primary mt-4 ml-0 mr-0 btn-sm" data-tippy-content="agregue una asignatura y un salon a un docente" style="float:right;"><i class="fas fa-plus-circle"></i> Agregar</a> -->
+                <a href="#" class="btn btn-danger mt-4 ml-0 mr-2 btn-sm"  data-toggle="modal" data-tippy-content="eliminar notas seleccionadas" id="borrarTodoLoSeleccionado"  data-target="#delete"  style="float:right;" ><i class="fas fa-trash-alt"></i> </a>
                 </div>
             </div>
           
@@ -118,48 +118,50 @@
             <caption> Calificaciones</caption>
             <thead >
                 <tr>
-                <th scope="col">Acciones</th>
-                <th scope="col">logro1</th>
-                <th scope="col">logro2</th>
-                <th scope="col">logro3</th>
-                <th scope="col">logro4</th>
-                <th scope="col">logro5</th>
-                <th scope="col">logro6</th>
-                <th scope="col">promedio</th>
-                <th scope="col">asignatura</th>
-                <th scope="col">alumno</th>
-                <th scope="col">curso</th>
-                <th scope="col">periodo</th>
-                
+                  <th scope="col">Acciones</th>
+                  
+                  <th scope="col">logro1</th>
+                  <th scope="col">logro2</th>
+                  <th scope="col">logro3</th>
+                  <th scope="col">logro4</th>
+                  <th scope="col">logro5</th>
+                  <th scope="col">logro6</th>
+                  <th scope="col">promedio</th>
+                  <th scope="col">asignatura</th>
+                  <th scope="col">alumno</th>
+                  <th scope="col">curso</th>
+                  <th scope="col">periodo</th>
+                  
+                  <th scope="col"><input type="checkbox" class=" ml-1"  data-tippy-content="Seleccionar todo" id="checkAll" ></th>
+                  
                 
                 </tr>
             </thead>
               <tbody>
                 @forelse ( $listaCalificaciones->where('id_docente','=', Auth::user()->id_docente) as  $listaCalificacion)
-                <tr>
+                <tr id="sid{{ $listaCalificacion->id_calificacion }}">
                     <td>
                       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-3" role="group" aria-label="First group">
                             
                         </div>
 
-                        @if (auth()->user()->hasRoles(['Empleado']))
+                        
                         <div class="btn-group " role="group" aria-label="Second group">
                             <button class="editar btn btn-info btn-sm" data-tippy-content="editar"  data-toggle="modal" data-target="#modalEdit" data-minota1="{{ $listaCalificacion->nota1 }}" data-minota2="{{ $listaCalificacion->nota2 }}" data-minota3="{{ $listaCalificacion->nota3 }}" data-minota4="{{ $listaCalificacion->nota4 }}" data-minota5="{{ $listaCalificacion->nota5 }}" data-minota6="{{ $listaCalificacion->nota6 }}" data-idcalificacion="{{ $listaCalificacion->id_calificacion }}" ><i class="fas fa-edit"></i></button>
                         </div>
-                        @endif
+                        
 
-                        @if (auth()->user()->hasRoles(['Administrador']))
+                        
                        
                         <div class="btn-group ml-1" role="group" aria-label="Third group">
-                            <button class="eliminar btn btn-danger btn-sm mr-3" data-tippy-content="Eliminar" data-toggle="modal" onclick="deleteData({{ $listaCalificacion->id_calificacion}})" data-target="#delete"
-                            ><i class="fas fa-trash-alt"></i> </button>
+                            
                         </div>
                         
-                        @endif
+                        
                       </div>
                     </td> 
-
+                    
                     <td>{{ $listaCalificacion->nota1 }} </td>
                     <td>{{ $listaCalificacion->nota2 }} </td>
                     <td>{{ $listaCalificacion->nota3 }} </td>
@@ -172,7 +174,9 @@
                     <td>{{ optional($listaCalificacion->curso)     ->salon }} </td>
                     <td>{{ optional($listaCalificacion->periodo)   ->id_periodo }} </td>
                     <!-- <td>{{ optional($listaCalificacion->docente)   ->nombres }} </td> -->
-                    
+                    <div class="form-check">
+                     <td> <input type="checkbox" class="checkBoxClass form-check-input ml-1" data-tippy-content="Seleccionar" value="{{ $listaCalificacion->id_calificacion}}"  name="ids"  ></td>
+                    </div>
                    
                     
                     @empty
@@ -235,7 +239,7 @@
             <form action="" id="deleteForm" method="POST">
               <div class="modal-content">
                 <div class="modal-header" style="background: #FB1C1C" >
-                  <h5 class="modal-title">Eliminar Listado</h5>
+                  <h5 class="modal-title">Eliminar calificaciones</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -243,8 +247,8 @@
                   <div class="modal-body">
                     {!! csrf_field()!!}
                   {!! method_field('DELETE')!!}
-                    <p>¿Está seguro de eliminar este listado?</p>
-                    {{-- <input type="hidden" name="id_materialBiblioteca" value=""> --}}
+                    <p>¿Está seguro(a) de eliminar las calificaciones seleccionadas?</p>
+                    
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-danger" data-dismiss="modal"
@@ -255,22 +259,52 @@
             </form>
             </div>
 				           <script type="text/javascript">
-                        function deleteData(id_listado)
-                        {
-                            var id = id_listado;
-                            var url = '{{ route("listado.destroy", ":id") }}';
-                            url = url.replace(':id', id);
-                            $("#deleteForm").attr('action', url);
-                        }
+                        //checkbox select all
+                        $(function(e){
+                            $("#checkAll").click(function(){
+                              $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+                            });
 
+                            $("#borrarTodoLoSeleccionado").click(function(e){
+                              e.preventDefault();
+                              var allids = [];
+                              $("input:checkbox[name=ids]:checked").each(function(){
+                                allids.push($(this).val());
+                              });
+                                
+                              $.ajax({
+                                  url:"{{ route("calificaciones.destroy", ":id") }}",
+                                  type:"DELETE",
+                                  data:{
+                                    _token:$("input[name=_token]").val(),
+                                    ids:allids
+                                  },
+                                  success:function(response){
+                                    $.each(allids,function(key,val){
+                                      $("#sid"+val).remove();
+                                      
+                                    })
+                                  }
+
+                                  
+                              });
+
+                            })
+
+                        });
                         function formSubmit()
-                        {
-                            $("#deleteForm").submit();
-                        }
+                          {
+                            
+                            $(location.reload());
+
+                          }
+
 						       </script>
 			    </div>  
-
-                 
+          
+           <script>
+              
+           </script>      
 			    
 
            
