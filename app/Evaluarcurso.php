@@ -47,8 +47,50 @@ class Evaluarcurso extends Model
     }
 
 
+    public static function compararAlumnoCursoPeriodo()
+    {
+        $consulAlumno = App\Calificacion::where('id_periodo','LIKE', $this->calcularPeriodoModel()->get() );
+    }
+
+
+    public static function calcularPeriodoModel(){
+        //toArray convierte un objeto elocuent en un array plano
+        $fechainicioo  = Periodo::pluck('fechainicio')->toArray();
+        $fechafinn     = Periodo::pluck('fechafin')->toArray();
+
+        
+
+        $fechahoy = Carbon::now();
+        
+
+        foreach($fechainicioo as $fechainicio){
+
+                if($fechahoy >= ($fechainicio[0]) && $fechahoy <= ($fechafinn[0]) )
+                return '1';
+
+                
+       
+                if($fechahoy >= ($fechainicio[1]) && $fechahoy <= ($fechafinn[1]) )
+                return '2';
+
+                
+                    
+                if($fechahoy >= ($fechainicio[2]) && $fechahoy <= ($fechafinn[2]) )
+                return '3';
+
+               
+                    
+                if($fechahoy >= ($fechainicio[3]) && $fechahoy <= ($fechafinn[3]) )
+                return '4';
+
+                
+
+        }
+    }
     
-    
+
+
+
 
 
 

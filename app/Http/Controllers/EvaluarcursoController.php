@@ -17,6 +17,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 
+use Illuminate\Validation\Rule;
+use Validator;
+
 
 class EvaluarcursoController extends Controller
 {
@@ -147,7 +150,7 @@ class EvaluarcursoController extends Controller
     public function store( Request $request)
     {
          //return $request->all();
-         //$this->authorize($request);
+         
         try{
             $idAsignatura = Crypt::decrypt($request->get('id_asignatura'));
             $idCurso      = Crypt::decrypt($request->get('id_curso'));
@@ -157,6 +160,30 @@ class EvaluarcursoController extends Controller
             return redirect()->route('listado.index');
         }
         
+
+
+         //validacion doble
+         //id_alumno requiere regla unica en la tabla calificacion, donde id_periodo en la bd es igual a calcularPeriodo y id_asignatura bd es igual id_asignatura request
+         //id_alumno requere unico periodo y unica asignatura
+         $validator = Validator::make($request->all(), [
+            'id_alumno' =>['required',Rule::unique('calificacion')->where(function ($query) use ($request){
+                return $query->where('id_periodo', $this->calcularPeriodo())
+                ->where('id_asignatura', Crypt::decrypt($request->id_asignatura) );
+                
+            })],
+
+            
+
+        ]);
+
+
+        if ($validator->fails()) {
+            Alert::error('UPS ', 'Intentalo en el proximo periodo por que ya fue calificado en este')->timerProgressBar();
+            return back();
+        }
+
+
+
         
         //dd($idAlumno);
 

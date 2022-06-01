@@ -45,13 +45,14 @@
                         <div class="btn-group mr-2" role="group" aria-label="First group">
                         </div>
 
-                        @if(App\Calificacion::where('id_alumno',$listaCurso->alumno->id_alumno)->exists() && App\Calificacion::where('id_periodo',\App\Http\Controllers\EvaluarcursoController::calcularPeriodo())->exists())
-                         <!-- ¿? -->
-                        @else
-                          <div class="btn-group mr-2" role="group" aria-label="Second group">
+                        
+                        
+                        
+                        
+                        <div class="btn-group mr-2" role="group" aria-label="Second group">
                             <a class="btn btn-primary btn-sm pull-right" type="submit" data-tippy-content="Calificar Alumno"  onclick="insertarId({{$listaCurso->id_alumno}})" data-toggle="modal" data-target="#create" 
                             href="#"><i class="fas fa-edit"></i></a>    
-                          </div>
+                        </div>
                         
                       </div>
                     </td> 
@@ -62,7 +63,7 @@
                             <!-- <td>{{ optional($listaCurso->alumno)->id_alumno }}</td> -->
                           
                             <!-- <td>{{ Request ('idAsignatura') }}</td> -->
-                        @endif
+                        
                     @empty
 					          <div class="alert alert-info">No se encontraron resultados en nuestros registros</div>
 

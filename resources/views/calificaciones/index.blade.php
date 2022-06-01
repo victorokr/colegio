@@ -4,7 +4,7 @@
 <div class="container-angosto">
   <div class="card  mr-3 ml-0 mt-3">
     <div class="card-header ">
-      <a><i class="icono  fas fa-folder-open"></i> Calificaciones año: {{ Carbon\Carbon::now()->year }}. Periodo en curso: {{ \App\Http\Controllers\EvaluarcursoController::calcularPeriodo() }}</a>
+      <a><i class="icono  fas fa-folder-open"></i> Calificaciones año: {{ Carbon\Carbon::now()->year }}. Periodo transcurrido: {{ \App\Http\Controllers\EvaluarcursoController::calcularPeriodo() }}</a>
     </div>
     <div class="card-body">
           
