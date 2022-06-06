@@ -90,26 +90,14 @@
                                   )
                                   }}">
                                   
-                                  <!-- <input type="hidden" name="salon"
-                                  value="{{ request('cursoo') }}"> -->
+                                  
                                 
                                 <i class="fas fa-edit"></i></a> 
 
 
 
 
-                                <!-- <button type="submit" class="btn btn-primary btn-sm "
-                                href="#, array (
-                                    'idAsignatura' => ($listadoo->asignatura)->id_asignatura,
-                                    'cursoo' => ($listadoo->curso)->id_curso,
-                                    )
-                                  )
-                                  "
-                                 data-tippy-content="Evaluar"><i class="fas fa-edit"></i></button> -->
-
-
-
-                            <!-- <a class="editar btn btn-success btn-sm" data-tippy-content="Evaluar" href="{{ route('listado.edit', $listadoo->id_listado) }} "><i class="fas fa-edit"></i></a> -->
+                                
                         </div>
                         </form>
                         @endif

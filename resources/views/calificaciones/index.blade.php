@@ -174,8 +174,8 @@
                     <td>{{ optional($listaCalificacion->curso)     ->salon }} </td>
                     <td>{{ optional($listaCalificacion->periodo)   ->id_periodo }} </td>
                     <!-- <td>{{ optional($listaCalificacion->docente)   ->nombres }} </td> -->
-                    <div class="form-check">
-                     <td> <input type="checkbox" class="checkBoxClass form-check-input ml-1" data-tippy-content="Seleccionar" value="{{ $listaCalificacion->id_calificacion}}"  name="ids"  ></td>
+                    <div class="btn-group ml-1" role="group" aria-label="Third group">
+                     <td> <input type="checkbox" class="checkBoxClass  ml-1" data-tippy-content="Seleccionar" value="{{ $listaCalificacion->id_calificacion}}"  name="ids"  ></td>
                     </div>
                    
                     
