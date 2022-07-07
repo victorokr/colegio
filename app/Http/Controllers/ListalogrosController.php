@@ -27,17 +27,20 @@ class ListalogrosController extends Controller
      */
     public function index(Request $request)
     {       
-        $gradoo    = Grado::pluck('grado','id_grado');
-        $periodoo  = Periodo::pluck('periodo','id_periodo');
+        $gradoo      = Grado::pluck('grado','id_grado');
+        $periodoo    = Periodo::pluck('periodo','id_periodo');
+        $asignaturaa  = Asignatura::pluck('asignatura','id_asignatura');
 
         $busquedaGrado   = $request-> get('grado');
         $busquedaPeriodo = $request-> get('periodo');
+        $asignatura      = $request-> get('asignatura');
 
         $listaLogros = Logro::orderBy('id_logro','DESC')
         ->consultaGrado($busquedaGrado)//consultaGrado es el nombre del metodo en el modelo, pero sin scope
         ->consultaPeriodo($busquedaPeriodo)
-        ->paginate(8);
-        return view('logros.index', compact('listaLogros','gradoo','periodoo'));
+        ->consultaAsignatura($asignatura)
+        ->paginate(15);
+        return view('logros.index', compact('listaLogros','gradoo','periodoo','asignaturaa'));
     }
 
     /**
@@ -61,11 +64,21 @@ class ListalogrosController extends Controller
      */
     public function store(CrearLogrosRequest $request)
     {
-        $listaLogros = Logro::create($request->all());
+        $consultaLogrosYaCreados = Logro::where('id_periodo','=',$request->id_periodo)->where('id_asignatura','=',$request->id_asignatura)->where('id_grado','=',$request->id_grado)->count();
+        if($consultaLogrosYaCreados >= 6){
+
+            Alert::error('ups ', 'Solo puedes crear 6 logros con esta asignatura, periodo y grado')->timerProgressBar();
+            return back();
+        }
+
+        else{
+            $listaLogros = Logro::create($request->all());
 
         
-        Alert::toast('Logro creado correctamente ', 'success')->timerProgressBar();
-        return redirect()->route('logros.index', compact('listaLogros'));
+            Alert::toast('Logro creado correctamente ', 'success')->timerProgressBar();
+            return redirect()->route('logros.index', compact('listaLogros'));
+        }
+       
     }
 
     /**

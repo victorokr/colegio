@@ -33,6 +33,17 @@
                       </select>
                   <!-- <input type="text" class="form-control mb-2" value="{{ request('grado')}}" id="prueba" name="grado" placeholder="filtrar por grado"> -->
               </div>
+              <div class="col-sm-2">
+                  <label for="inputCity">filtrar por asignatura</label>
+                      <select id="inputPeriodo" class="form-control form-control-sm mt-1" name="asignatura" required data-parsley-required data-parsley-trigger="keyup" >
+                            <option value="" selected></option>
+                            @foreach ($asignaturaa as $asignatura =>$Asignatura)
+                                <option value="{{ $asignatura }}" {{ old('id_asignatura') }} > {{$Asignatura }} </option>
+                                {!!$errors->first('id_asignatura','<span class=error>:message</span>')!!}
+                            @endforeach
+                      </select>
+                  <!-- <input type="text" class="form-control mb-2" value="{{ request('grado')}}" id="prueba" name="grado" placeholder="filtrar por grado"> -->
+              </div>
               <div class="col-sm">
                   <button type="submit" class="btn btn-primary mt-3 ml-0 mr-0 " data-tippy-content="Buscar"><i class="fas fa-search"></i></button>
                   <a href="{{ url('lista/logros') }}"   class="btn btn-light mt-3 ml-0 "data-tippy-content="restablecer"><i class="fas fa-reply"></i></a>
@@ -57,7 +68,7 @@
                 </tr>
             </thead>
               <tbody>
-                @forelse ($listaLogros->where('id_docente','=', Auth::user()->id_docente) as $listaLogro)
+                @forelse ($listaLogros as $listaLogro)
                 <tr>
                   <td>
                   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

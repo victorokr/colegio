@@ -22,7 +22,7 @@
                     {!!$errors->first('logro','<span class=error>:message</span>')!!}
                 </div>
                 <div class="form-group ">
-                    <label class="asterisko">Periodo</label>
+                    <label class="asterisko">para que periodo?</label>
                         <select id="inputPeriodo" class="form-control form-control-sm" name="id_periodo" required data-parsley-required data-parsley-trigger="keyup" >
                             <option value="" selected>Seleccionar...</option>
                             @foreach ($periodoo as $periodo =>$Periodo)

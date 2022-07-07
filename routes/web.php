@@ -59,3 +59,5 @@ Route::resource('evaluar','EvaluarcursoController');
 
 Route::resource('periodo','PeriodoController');
 Route::resource('calificaciones','CalificacionesController');
+
+Route::get('/downloadPDF/{id}', 'CalificacionesController@downloadPDF');

@@ -12,6 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Support\Facades\Auth;
 use App\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CalificacionesController extends Controller
 {
@@ -82,15 +83,32 @@ class CalificacionesController extends Controller
      */
     public function show($id)
     {
-        //
+        //return view('calificaciones.show');
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    public function downloadPDF($id, Request $request)
+    {
+        
+        $calificacionIdAlumno = Calificacion::findOrFail($id);
+        $listaCalificacioPdf = Calificacion::get();
+        //dd($calificacionAlumno);
+        //$idAlumno = $request->get('id_alumno');
+        //dd($idAlumno);
+
+        $pdf = PDF::loadView('calificaciones.show', compact('calificacionIdAlumno','listaCalificacioPdf'));
+
+        return $pdf->stream('prueba.pdf');
+    }
+
+
+
     public function edit($id)
     {
         //

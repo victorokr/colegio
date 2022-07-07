@@ -49,6 +49,14 @@ class Logro extends Model
         });
     }
 
+    public function scopeConsultaAsignatura($query, $asignatura)
+    {
+        if($asignatura)
+        return $query->whereHas("asignatura", function ($query) use ($asignatura){
+            $query->where('id_asignatura','LIKE', "%$asignatura%");
+        });
+    }
+
     // public function cursos()
     // {
     //     return $this->hasManyThrough('App\Listado','App\Curso','id_curso','id_listado');
